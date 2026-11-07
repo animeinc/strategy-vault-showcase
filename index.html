@@ -9,6 +9,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    html[lang="en"] [data-lang="zh"] { display: none !important; }
+    html[lang="zh"] [data-lang="en"] { display: none !important; }
+    .top-actions { display: flex; align-items: center; gap: 8px; }
+    #lang-toggle { font-weight: 600; border-color: var(--accent); color: var(--accent); }
+    #lang-toggle:hover { background: var(--accent-soft); }
+  </style>
 </head>
 <body>
 
@@ -18,15 +25,35 @@
       <a href="#top" class="brand">
         <span class="brand-dot"></span>
         <span>Jiarong Li</span>
-        <span class="brand-tag">Builder Portfolio</span>
+        <span class="brand-tag" data-lang="en">Builder Portfolio</span>
+        <span class="brand-tag" data-lang="zh">个人作品集</span>
       </a>
       <nav class="nav-links" aria-label="Section Navigation">
-        <a href="#portfolio"><span class="nav-num">01</span>Portfolio &amp; Origin</a>
-        <a href="#architecture"><span class="nav-num">02</span>System Architecture</a>
-        <a href="#under-the-hood"><span class="nav-num">03</span>Under the Hood</a>
-        <a href="#overfitting-puzzle"><span class="nav-num">04</span>Backtests &amp; Overfitting</a>
+        <a href="#portfolio">
+          <span class="nav-num">01</span>
+          <span data-lang="en">Portfolio &amp; Origin</span>
+          <span data-lang="zh">概览与起因</span>
+        </a>
+        <a href="#architecture">
+          <span class="nav-num">02</span>
+          <span data-lang="en">System Architecture</span>
+          <span data-lang="zh">架构演进</span>
+        </a>
+        <a href="#under-the-hood">
+          <span class="nav-num">03</span>
+          <span data-lang="en">Under the Hood</span>
+          <span data-lang="zh">工程切片</span>
+        </a>
+        <a href="#overfitting-puzzle">
+          <span class="nav-num">04</span>
+          <span data-lang="en">Backtests &amp; Overfitting</span>
+          <span data-lang="zh">回测与防过拟合</span>
+        </a>
       </nav>
-      <button id="theme-toggle" class="theme-btn" type="button" aria-label="Toggle color theme">Dark Mode</button>
+      <div class="top-actions">
+        <button id="lang-toggle" class="theme-btn" type="button" aria-label="Switch Language">中文</button>
+        <button id="theme-toggle" class="theme-btn" type="button" aria-label="Toggle color theme">Dark Mode</button>
+      </div>
     </div>
   </header>
 
@@ -37,16 +64,31 @@
       <div class="hero-card">
         <div class="hero-top">
           <div>
-            <h1 id="portfolio-heading" class="builder-name">Jiarong Li</h1>
-            <p class="builder-role">Independent builder exploring AI agent workflows, quantitative market research, and applied fintech tools.</p>
+            <h1 id="portfolio-heading" class="builder-name">
+              <span data-lang="en">Jiarong Li</span>
+              <span data-lang="zh">李佳嵘 (Jiarong Li)</span>
+            </h1>
+            <p class="builder-role" data-lang="en">
+              Independent builder exploring AI agent workflows, quantitative market research, and applied fintech tools.
+            </p>
+            <p class="builder-role" data-lang="zh">
+              独立开发者（Builder），专注于 AI 多智能体工作流、量化市场策略研究与应用型金融科技工具。
+            </p>
             <div class="builder-meta">
-              <span class="meta-pill">B.Eng. in Electronic Engineering (Year 1) · Tsinghua University</span>
-              <span class="meta-pill">Focus: Multi-Agent Systems · Rule-Based Backtesting · Applied Fintech</span>
+              <span class="meta-pill" data-lang="en">B.Eng. in Electronic Engineering (Year 1) · Tsinghua University</span>
+              <span class="meta-pill" data-lang="zh">清华大学 · 电子工程系本科一年级</span>
+              <span class="meta-pill" data-lang="en">Focus: Multi-Agent Systems · Rule-Based Backtesting · Applied Fintech</span>
+              <span class="meta-pill" data-lang="zh">方向：多智能体编排 · 规则化量化回测 · 跨境关税合规工具</span>
             </div>
           </div>
-          <div class="status-banner" role="note">
+
+          <div class="status-banner" role="note" data-lang="en">
             <strong>Honest Builder Status: Work in Progress / Testing</strong>
             No cherry-picked equity curves or claims of "beating the market." This page documents how I re-architected a multi-agent research workflow and how it tests rule-based U.S. stock strategies against overfitting.
+          </div>
+          <div class="status-banner" role="note" data-lang="zh">
+            <strong>诚实进展说明：Work in Progress / 持续测试中</strong>
+            不包装虚假收益曲线，也不声称“已稳定跑赢市场”。本页真实记录我如何重构多智能体研究工作流，并在不同历史窗口冲突中检验美股日频规则、对抗过拟合。
           </div>
         </div>
 
@@ -57,22 +99,45 @@
           <article class="proj-card featured">
             <div>
               <div class="proj-head">
-                <span class="proj-badge badge-active">Featured Deep Dive (Sections 02–04 Below)</span>
-                <span class="proj-badge badge-wip">Status: In Testing</span>
+                <span class="proj-badge badge-active" data-lang="en">Featured Deep Dive (Sections 02–04 Below)</span>
+                <span class="proj-badge badge-active" data-lang="zh">本页深度展示项目（见下方 02–04 节）</span>
+                <span class="proj-badge badge-wip" data-lang="en">Status: In Testing</span>
+                <span class="proj-badge badge-wip" data-lang="zh">状态：历史回测检验中</span>
               </div>
-              <h2 class="proj-title">01 / AI-Assisted U.S. Equity Strategy Research (`strategy-vault`)</h2>
-              <div class="proj-period">Independent Project · Sep 2026 – Present · 50 hrs/wk</div>
-              <ul class="proj-list">
+              <h2 class="proj-title" data-lang="en">01 / AI-Assisted U.S. Equity Strategy Research (`strategy-vault`)</h2>
+              <h2 class="proj-title" data-lang="zh">01 / AI 多智能体美股量化策略研究系统 (`strategy-vault`)</h2>
+              <div class="proj-period" data-lang="en">Independent Project · Sep 2026 – Present · 50 hrs/wk</div>
+              <div class="proj-period" data-lang="zh">独立项目 · 2026 年 9 月至今 · 50 小时/周</div>
+
+              <ul class="proj-list" data-lang="en">
                 <li><strong>Origin:</strong> Started trading U.S. stocks in early 2026 and realized my biggest losses came from emotional, momentum-chasing decisions (buying into rallies, panic-selling dips). Replaced discretionary judgment with a <strong>rule-based daily trading strategy</strong>.</li>
                 <li><strong>Engineering Refactor:</strong> Rebuilt an early multi-agent loop into a <strong>1 Leader + Parallel Workers</strong> architecture with explicit <strong>error tolerances</strong> for every check and <strong>short summary handoffs</strong>—cutting research time by <strong>~50%</strong> and token usage by <strong>~70%</strong>.</li>
                 <li><strong>Current Focus:</strong> Running historical backtests across U.S. market regimes (1927–2026) and resolving cross-window conflicts to separate real statistical signal from overfitting and noise.</li>
               </ul>
+
+              <ul class="proj-list" data-lang="zh">
+                <li><strong>起因：</strong> 2026 年初开始交易美股，发现最大的亏损来自情绪化交易（追涨杀跌）。为将情绪踢出决策闭环，决定用 AI Agents 研究并回测<strong>基于规则的美股日频交易策略</strong>。</li>
+                <li><strong>工程重构：</strong> 将早期因微小舍入误差陷入无限重跑死循环的多 Agent 流程，重构为 <strong>1 Leader + 并行 Workers 架构</strong>，设定<strong>明确误差容忍度</strong>并改为<strong>结构化短摘要交接</strong>，使研究耗时缩短约 <strong>50%</strong>、Token 消耗降低约 <strong>70%</strong>。</li>
+                <li><strong>当前进展：</strong> 正处于 Testing 阶段，在 1927–2026 美股长历史数据上持续回测，解决不同时间窗口或不同 Agent 结果冲突时的<strong>真实统计信号与过拟合/噪音分离</strong>问题。</li>
+              </ul>
             </div>
             <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--line)">
-              <a href="#architecture" class="mini-btn active" style="text-decoration:none">View Architecture Refactor ↓</a>
-              <a href="#under-the-hood" class="mini-btn" style="text-decoration:none">Inspect Real Artifacts ↓</a>
-              <a href="#overfitting-puzzle" class="mini-btn" style="text-decoration:none">Explore Trial Ledger ↓</a>
-              <a href="https://github.com/animeinc/strategy-vault-showcase" target="_blank" rel="noopener noreferrer" class="mini-btn" style="text-decoration:none">GitHub Repo ↗</a>
+              <a href="#architecture" class="mini-btn active" style="text-decoration:none">
+                <span data-lang="en">View Architecture Refactor ↓</span>
+                <span data-lang="zh">查看架构演进 ↓</span>
+              </a>
+              <a href="#under-the-hood" class="mini-btn" style="text-decoration:none">
+                <span data-lang="en">Inspect Real Artifacts ↓</span>
+                <span data-lang="zh">查看工程切片 ↓</span>
+              </a>
+              <a href="#overfitting-puzzle" class="mini-btn" style="text-decoration:none">
+                <span data-lang="en">Explore Trial Ledger ↓</span>
+                <span data-lang="zh">探索回测台账 ↓</span>
+              </a>
+              <a href="https://github.com/animeinc/strategy-vault-showcase" target="_blank" rel="noopener noreferrer" class="mini-btn" style="text-decoration:none">
+                <span data-lang="en">GitHub Repo ↗</span>
+                <span data-lang="zh">GitHub 仓库 ↗</span>
+              </a>
             </div>
           </article>
 
@@ -80,39 +145,63 @@
           <article class="proj-card">
             <div>
               <div class="proj-head">
-                <span class="proj-badge badge-active">Project 02 · Applied E-Commerce Fintech</span>
-                <span class="proj-badge badge-wip">Status: In Testing</span>
+                <span class="proj-badge badge-active" data-lang="en">Project 02 · Applied E-Commerce Fintech</span>
+                <span class="proj-badge badge-active" data-lang="zh">项目 02 · 跨境电商合规与关税工具</span>
+                <span class="proj-badge badge-wip" data-lang="en">Status: In Testing</span>
+                <span class="proj-badge badge-wip" data-lang="zh">状态：测试中</span>
               </div>
-              <h2 class="proj-title">02 / TariffDesk — Shopify HS/HTS &amp; Landed-Cost Engine</h2>
-              <div class="proj-period">Independent Project · Sep 2026 – Present · Built with AI Coding Agents</div>
-              <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px">
+              <h2 class="proj-title" data-lang="en">02 / TariffDesk — Shopify HS/HTS &amp; Landed-Cost Engine</h2>
+              <h2 class="proj-title" data-lang="zh">02 / TariffDesk — Shopify 海关编码分类与到岸成本引擎</h2>
+              <div class="proj-period" data-lang="en">Independent Project · Sep 2026 – Present · Built with AI Coding Agents</div>
+              <div class="proj-period" data-lang="zh">独立项目 · 2026 年 9 月至今 · 使用 AI Coding Agents 构建</div>
+
+              <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px" data-lang="en">
                 Assigns <strong>HS/HTS customs codes</strong> to every product in a cross-border Shopify merchant's catalogue, cites the legal basis (GRI &amp; Chapter Notes), and calculates <strong>Section 301 tariffs &amp; total landed cost</strong>. Instead of blind LLM guessing, every classification is gated by a three-tier confidence protocol:
+              </p>
+              <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px" data-lang="zh">
+                为跨境 Shopify 卖家的全部商品分配 <strong>HS/HTS 海关编码</strong>、引用归类总规则（GRI）与章注法律依据，并自动测算 <strong>301 关税与到岸总成本（Landed Cost）</strong>。拒绝大模型盲猜，每条分类均受三档置信度门禁控制：
               </p>
 
               <div class="tier-grid">
                 <div class="tier-item tier-auto">
-                  <b>1. Auto-Apply</b>
-                  High confidence; unambiguous material &amp; GRI legal match.
+                  <b data-lang="en">1. Auto-Apply</b>
+                  <b data-lang="zh">1. 自动应用 (Auto-Apply)</b>
+                  <span data-lang="en">High confidence; unambiguous material &amp; GRI legal match.</span>
+                  <span data-lang="zh">高置信度；材质与功能完全匹配税则号列与 GRI 依据。</span>
                 </div>
                 <div class="tier-item tier-review">
-                  <b>2. Flag for Review</b>
-                  Composite/dual-use ambiguity; surfaces duty spread for human review.
+                  <b data-lang="en">2. Flag for Review</b>
+                  <b data-lang="zh">2. 人工复核 (Flag Review)</b>
+                  <span data-lang="en">Composite/dual-use ambiguity; surfaces duty spread for human review.</span>
+                  <span data-lang="zh">复合材质或多功能存在税率分歧；展示候选税号与关税差额供卖家确认。</span>
                 </div>
                 <div class="tier-item tier-refuse">
-                  <b>3. Refuse to Guess</b>
-                  Missing material/spec evidence; halts rather than hallucinating a code.
+                  <b data-lang="en">3. Refuse to Guess</b>
+                  <b data-lang="zh">3. 拒绝盲猜 (Refuse)</b>
+                  <span data-lang="en">Missing material/spec evidence; halts rather than hallucinating a code.</span>
+                  <span data-lang="zh">商品缺少成分或规格证据；直接拦截并提示补全，绝不编造违规税号。</span>
                 </div>
               </div>
 
               <!-- Interactive TariffDesk Mini-Preview -->
               <div class="tariff-demo-box">
                 <div style="font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-bottom:6px">
-                  INTERACTIVE PREVIEW — Click a confidence tier to inspect sample engine output:
+                  <span data-lang="en">INTERACTIVE PREVIEW — Click a confidence tier to inspect sample engine output:</span>
+                  <span data-lang="zh">交互预览 —— 点击下方三档置信度按钮查看引擎真实输出样例：</span>
                 </div>
                 <div class="tariff-demo-controls">
-                  <button type="button" class="mini-btn active" data-tariff-sample="auto">Tier 1: Auto-Apply</button>
-                  <button type="button" class="mini-btn" data-tariff-sample="review">Tier 2: Flag for Review</button>
-                  <button type="button" class="mini-btn" data-tariff-sample="refuse">Tier 3: Refuse to Guess</button>
+                  <button type="button" class="mini-btn active" data-tariff-sample="auto">
+                    <span data-lang="en">Tier 1: Auto-Apply</span>
+                    <span data-lang="zh">第一档：自动应用</span>
+                  </button>
+                  <button type="button" class="mini-btn" data-tariff-sample="review">
+                    <span data-lang="en">Tier 2: Flag for Review</span>
+                    <span data-lang="zh">第二档：人工复核</span>
+                  </button>
+                  <button type="button" class="mini-btn" data-tariff-sample="refuse">
+                    <span data-lang="en">Tier 3: Refuse to Guess</span>
+                    <span data-lang="zh">第三档：拒绝盲猜</span>
+                  </button>
                 </div>
                 <div id="tariff-demo-output" class="tariff-output"></div>
               </div>
@@ -124,19 +213,28 @@
         <!-- 3-Step Narrative Strip (Strictly Aligned with Application Essay) -->
         <div class="origin-strip">
           <div class="origin-step">
-            <div class="origin-step-num">Phase 01 · Why I Started It</div>
-            <h3>Eliminating Emotional Trading</h3>
-            <p>When I began trading U.S. equities in early 2026, my worst drawdowns came from emotional reactions—chasing breakouts late and selling into short-term panic. I set out to codify a strictly rule-based daily strategy researched and audited by AI agents.</p>
+            <div class="origin-step-num" data-lang="en">Phase 01 · Why I Started It</div>
+            <div class="origin-step-num" data-lang="zh">阶段 01 · 为什么开始做这个项目</div>
+            <h3 data-lang="en">Eliminating Emotional Trading</h3>
+            <h3 data-lang="zh">把情绪踢出美股交易决策</h3>
+            <p data-lang="en">When I began trading U.S. equities in early 2026, my worst drawdowns came from emotional reactions—chasing breakouts late and selling into short-term panic. I set out to codify a strictly rule-based daily strategy researched and audited by AI agents.</p>
+            <p data-lang="zh">2026 年初开始交易美股时，我发现自己最大的亏损完全源于情绪化操作——上涨时追高、回调时恐慌割肉。我决定彻底用规则代替主观判断，用 AI Agents 来研究、验证并执行基于规则的美股日频策略。</p>
           </div>
           <div class="origin-step">
-            <div class="origin-step-num">Phase 02 · What Broke &amp; How I Fixed It</div>
-            <h3>Stopping the Infinite Rerun Loop</h3>
-            <p>Early peer agents had no definition of "good enough"—they looped endlessly over `0.001%` rounding differences, burning my token budget. I refactored the system into <strong>1 Leader + Parallel Workers</strong> with explicit error tolerances and 150-char summary handoffs.</p>
+            <div class="origin-step-num" data-lang="en">Phase 02 · What Broke &amp; How I Fixed It</div>
+            <div class="origin-step-num" data-lang="zh">阶段 02 · 核心工程瓶颈与架构重构</div>
+            <h3 data-lang="en">Stopping the Infinite Rerun Loop</h3>
+            <h3 data-lang="zh">终结无限重跑死循环与 Token 爆炸</h3>
+            <p data-lang="en">Early peer agents had no definition of "good enough"—they looped endlessly over `0.001%` rounding differences, burning my token budget. I refactored the system into <strong>1 Leader + Parallel Workers</strong> with explicit error tolerances and 150-char summary handoffs.</p>
+            <p data-lang="zh">早期让多个 Agent 分别抓数据、跑回测、互相复核，但它们没有“什么叫够好”的标准，会因 `0.001%` 的浮点舍入误差陷入无限重跑死循环。我将其重构为 <strong>1 Leader + 并行 Workers</strong>，设定明确误差容忍度与 150 字结构化摘要交接。</p>
           </div>
           <div class="origin-step">
-            <div class="origin-step-num">Phase 03 · Where It Stands Today</div>
-            <h3>Signal vs. Overfitting in Testing</h3>
-            <p>A rule that shines in `1997–2011` often fails in `2012–2025` or crashes in `1934–1985`. Rather than curve-fitting until backtests look pretty, our current work focuses on statistical gates that reject false positives across regimes.</p>
+            <div class="origin-step-num" data-lang="en">Phase 03 · Where It Stands Today</div>
+            <div class="origin-step-num" data-lang="zh">阶段 03 · 当前真实进展与边界</div>
+            <h3 data-lang="en">Signal vs. Overfitting in Testing</h3>
+            <h3 data-lang="zh">在冲突回测中区分真实信号与过拟合</h3>
+            <p data-lang="en">A rule that shines in `1997–2011` often fails in `2012–2025` or crashes in `1934–1985`. Rather than curve-fitting until backtests look pretty, our current work focuses on statistical gates that reject false positives across regimes.</p>
+            <p data-lang="zh">在 `1997–2011` 开发段表现优异的规则，往往在 `2012–2025` 留出段反转，或在 `1934–1985` 极端行情中崩溃。我们拒绝拼凑好看的曲线，重点用严苛的统计门禁剔除跨周期假阳性。</p>
           </div>
         </div>
       </div>
@@ -145,10 +243,19 @@
     <!-- MODULE 2: SYSTEM ARCHITECTURE (BEFORE VS. AFTER) -->
     <section id="architecture" aria-labelledby="arch-heading">
       <div class="sec-header">
-        <div class="sec-eyebrow">Section 02 · Multi-Agent Workflow Engineering</div>
-        <h2 id="arch-heading" class="sec-title">System Architecture: From Infinite Review Loops to Leader–Worker Orchestration</h2>
-        <p class="sec-desc">
+        <div class="sec-eyebrow">
+          <span data-lang="en">Section 02 · Multi-Agent Workflow Engineering</span>
+          <span data-lang="zh">第 02 节 · 多智能体工作流工程迭代</span>
+        </div>
+        <h2 id="arch-heading" class="sec-title">
+          <span data-lang="en">System Architecture: From Infinite Review Loops to Leader–Worker Orchestration</span>
+          <span data-lang="zh">系统架构对比：从“无限互审死循环”到“组长–工作槽位 + 误差容忍度门禁”</span>
+        </h2>
+        <p class="sec-desc" data-lang="en">
           How restructuring agent coordination, defining explicit numerical tolerances (`Decision 39`), and replacing full-history context dumps with structured summary handoffs (`handoff-meta-1`) halved research turnaround time and cut token consumption by ~70%.
+        </p>
+        <p class="sec-desc" data-lang="zh">
+          通过重构多智能体分工、为每项核验设定明确数值误差容忍度（`决定 39`），以及用结构化短摘要交接（`handoff-meta-1`）替代完整历史上下文传递，将研究耗时缩短约 50%、Token 消耗降低约 70%。
         </p>
       </div>
 
@@ -156,23 +263,31 @@
       <div class="kpi-banner">
         <div class="kpi-card">
           <div class="kpi-val">~50%</div>
-          <div class="kpi-label">Research Time Saved</div>
-          <div class="kpi-sub">Parallel slot queues (`C1`, `C2`, `G1–G5`) + single-pass tolerance gate</div>
+          <div class="kpi-label" data-lang="en">Research Time Saved</div>
+          <div class="kpi-label" data-lang="zh">研究周转耗时缩短</div>
+          <div class="kpi-sub" data-lang="en">Parallel slot queues (`C1`, `C2`, `G1–G5`) + single-pass tolerance gate</div>
+          <div class="kpi-sub" data-lang="zh">并行槽位队列（`C1`, `C2`, `G1–G5`）+ 容差门禁一轮收口</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-val">~70%</div>
-          <div class="kpi-label">Token Consumption Cut</div>
-          <div class="kpi-sub">Measured 72.8% context payload drop (`8,551` → `2,329` chars/turn)</div>
+          <div class="kpi-label" data-lang="en">Token Consumption Cut</div>
+          <div class="kpi-label" data-lang="zh">Token 消耗降低</div>
+          <div class="kpi-sub" data-lang="en">Measured 72.8% context payload drop (`8,551` → `2,329` chars/turn)</div>
+          <div class="kpi-sub" data-lang="zh">实测单轮读入字符代理下降 72.8%（`8,551` → `2,329` 字符/轮）</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-val">±0.05 pp</div>
-          <div class="kpi-label">Explicit Metric Tolerance</div>
-          <div class="kpi-sub">`≤$0.01` row rounding logged only; stops infinite agent re-runs</div>
+          <div class="kpi-label" data-lang="en">Explicit Metric Tolerance</div>
+          <div class="kpi-label" data-lang="zh">明确指标误差容忍度</div>
+          <div class="kpi-sub" data-lang="en">`≤$0.01` row rounding logged only; stops infinite agent re-runs</div>
+          <div class="kpi-sub" data-lang="zh">单行费用舍入 `≤$0.01` 只记日志不重跑，终结死循环</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-val">≤150 chars</div>
-          <div class="kpi-label">Structured Handoff Card</div>
-          <div class="kpi-sub">5-field `DONE.md` + `DONE.meta.json` sidecar; zero chat history bloat</div>
+          <div class="kpi-label" data-lang="en">Structured Handoff Card</div>
+          <div class="kpi-label" data-lang="zh">结构化短摘要交接</div>
+          <div class="kpi-sub" data-lang="en">5-field `DONE.md` + `DONE.meta.json` sidecar; zero chat history bloat</div>
+          <div class="kpi-sub" data-lang="zh">5 项 `DONE.md` + `DONE.meta.json` 机器元数据，告别长历史堆积</div>
         </div>
       </div>
 
@@ -182,8 +297,10 @@
         <!-- BEFORE PANEL -->
         <div class="arch-panel before">
           <div class="arch-header">
-            <h3>Before: Unbounded Peer-to-Peer Review Loop</h3>
-            <span class="pill pill-lose">Early Bottleneck</span>
+            <h3 data-lang="en">Before: Unbounded Peer-to-Peer Review Loop</h3>
+            <h3 data-lang="zh">重构前：无边界平级互审与重跑死循环</h3>
+            <span class="pill pill-lose" data-lang="en">Early Bottleneck</span>
+            <span class="pill pill-lose" data-lang="zh">早期瓶颈</span>
           </div>
 
           <div class="diagram-box" aria-label="Before Architecture Diagram">
@@ -193,7 +310,6 @@
                   <path d="M 0 1 L 10 5 L 0 9 z" fill="#b42d22" />
                 </marker>
               </defs>
-              <!-- Nodes -->
               <rect x="14" y="32" width="125" height="54" rx="6" fill="none" stroke="#b42d22" stroke-width="1.5" />
               <text x="76" y="55" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">Data Agent</text>
               <text x="76" y="72" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#8d9b95">Fetch &amp; Clean CSV</text>
@@ -206,11 +322,9 @@
               <text x="423" y="55" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">Review Agent</text>
               <text x="423" y="72" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#8d9b95">Recompute &amp; Diff</text>
 
-              <!-- Forward Arrows -->
               <line x1="139" y1="52" x2="184" y2="52" stroke="#b42d22" stroke-width="1.5" marker-end="url(#arr-red)" />
               <line x1="314" y1="52" x2="358" y2="52" stroke="#b42d22" stroke-width="1.5" marker-end="url(#arr-red)" />
 
-              <!-- Infinite Rerun Loop Feedback -->
               <path d="M 423 86 L 423 138 L 250 138 L 250 88" fill="none" stroke="#b42d22" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-red)" />
               <path d="M 250 138 L 76 138 L 76 88" fill="none" stroke="#b42d22" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-red)" />
 
@@ -224,18 +338,25 @@
             </svg>
           </div>
 
-          <ul class="arch-points">
+          <ul class="arch-points" data-lang="en">
             <li><strong>No "Good Enough" Threshold:</strong> When the Review Agent recomputed metrics using a slightly different float reduction order or fee rounding (`$0.01` difference on a single trade row), it flagged a mismatch and forced the Backtest Agent to re-run from scratch.</li>
             <li><strong>Quadratic Context Bloat:</strong> Agents passed entire raw conversation histories and multi-page stdout logs across sessions (`43,493` tokens on turn 1 growing to `237,930` tokens by turn 8 in client logs).</li>
             <li><strong>Zero Fault Isolation:</strong> A single missing ticker date or unverified data column blocked the entire chain while agents debated how to patch policy on the fly.</li>
+          </ul>
+          <ul class="arch-points" data-lang="zh">
+            <li><strong>缺乏“什么叫够好”的标准：</strong> 复核 Agent 只要算出一丝浮点累加顺序差异或单行 `$0.01` 的手续费四舍五入尾差，就会判定不一致并打回重跑，陷入无休止的复核死循环。</li>
+            <li><strong>上下文平方级膨胀：</strong> 跨轮次直接传递完整聊天记录与长篇终端日志（实测客户端日志第 1 轮输入 `43,493` tokens，到第 8 轮暴涨至 `237,930` tokens）。</li>
+            <li><strong>缺乏故障隔离：</strong> 任何单个日期缺口或字段歧义都会阻塞整条流水线，多个 Agent 在对话里反复拉锯补丁方案。</li>
           </ul>
         </div>
 
         <!-- AFTER PANEL -->
         <div class="arch-panel after">
           <div class="arch-header">
-            <h3>After: 1 Leader + Parallel Workers + Tolerance Gate</h3>
-            <span class="pill pill-win">Current Production Workflow</span>
+            <h3 data-lang="en">After: 1 Leader + Parallel Workers + Tolerance Gate</h3>
+            <h3 data-lang="zh">重构后：1 组长 + 并行工作槽位 + 误差容忍度门禁</h3>
+            <span class="pill pill-win" data-lang="en">Current Production Workflow</span>
+            <span class="pill pill-win" data-lang="zh">现行生产工作流</span>
           </div>
 
           <div class="diagram-box" aria-label="After Architecture Diagram">
@@ -245,14 +366,12 @@
                   <path d="M 0 1 L 10 5 L 0 9 z" fill="#196f43" />
                 </marker>
               </defs>
-              <!-- Leader Node -->
               <rect x="12" y="42" width="118" height="76" rx="6" fill="none" stroke="#196f43" stroke-width="1.6" />
               <text x="71" y="64" text-anchor="middle" font-size="11.5" font-weight="700" fill="currentColor">1 Leader Agent</text>
               <text x="71" y="81" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#8d9b95">leader.py / brief.py</text>
               <text x="71" y="96" text-anchor="middle" font-size="9" font-family="IBM Plex Mono, monospace" fill="#196f43">≤4.5KB Task Contract</text>
               <text x="71" y="109" text-anchor="middle" font-size="9" font-family="IBM Plex Mono, monospace" fill="#196f43">+ P1/N1 Fixtures</text>
 
-              <!-- Parallel Workers -->
               <rect x="166" y="16" width="142" height="36" rx="5" fill="none" stroke="#196f43" stroke-width="1.3" />
               <text x="237" y="38" text-anchor="middle" font-size="10.5" font-family="IBM Plex Mono, monospace" fill="currentColor">Worker C1 (Ops/Kit)</text>
 
@@ -262,7 +381,6 @@
               <rect x="166" y="108" width="142" height="36" rx="5" fill="none" stroke="#196f43" stroke-width="1.3" />
               <text x="237" y="130" text-anchor="middle" font-size="10.5" font-family="IBM Plex Mono, monospace" fill="currentColor">Workers G1–G5 (Verify)</text>
 
-              <!-- Tolerance & Handoff Gate -->
               <rect x="344" y="26" width="144" height="108" rx="6" fill="#e1f3e9" stroke="#a3d9bc" stroke-width="1.5" />
               <text x="416" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#196f43">Tolerance &amp; Handoff</text>
               <text x="416" y="64" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#196f43">Metric tol: ±0.05 pp</text>
@@ -271,7 +389,6 @@
               <text x="416" y="112" text-anchor="middle" font-size="9.5" font-weight="600" font-family="IBM Plex Mono, monospace" fill="#196f43">DONE.md (≤150 chars)</text>
               <text x="416" y="125" text-anchor="middle" font-size="9" font-family="IBM Plex Mono, monospace" fill="#196f43">+ DONE.meta.json</text>
 
-              <!-- Arrows -->
               <line x1="130" y1="62" x2="164" y2="34" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
               <line x1="130" y1="80" x2="164" y2="80" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
               <line x1="130" y1="98" x2="164" y2="126" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
@@ -280,7 +397,6 @@
               <line x1="308" y1="80" x2="342" y2="80" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
               <line x1="308" y1="126" x2="342" y2="100" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
 
-              <!-- Summary Handoff Back to Leader -->
               <path d="M 416 134 L 416 164 L 71 164 L 71 120" fill="none" stroke="#196f43" stroke-width="1.5" marker-end="url(#arr-green)" />
               <text x="245" y="177" text-anchor="middle" font-size="10" font-family="IBM Plex Mono, monospace" fill="#196f43">
                 Delta Packet Only (2,329 chars vs 8,551 chars = -72.8% context read)
@@ -288,10 +404,15 @@
             </svg>
           </div>
 
-          <ul class="arch-points">
+          <ul class="arch-points" data-lang="en">
             <li><strong>1 Leader + Parallel Slot Queues:</strong> The Leader Agent (`leader.py`) writes self-contained task contracts (`≤4,500B`) with pre-computed positive/negative test fixtures (`g5-pos.json` / `g5-neg.json`). Workers claim tasks atomically from isolated queues without touching each other's directories.</li>
             <li><strong>Explicit Error Tolerances (`Decision 39`):</strong> Metric reproduction within `±0.05 pp`, single-row fee rounding `≤$0.01` (`≤$0.05` batch), and float arrays within `rtol=1e-9, atol=1e-12` pass automatically—minor diffs below threshold are logged as notes, never re-run.</li>
             <li><strong>Short Summary Handoffs (`handoff_meta.py`):</strong> Workers output a strict 5-field `DONE.md` (`≤150` char conclusion + single literal re-check command) and an automated `DONE.meta.json` sidecar. The Leader reads compact `brief.py` delta packets (`≤4,000` chars) and rotates sessions every 3–5 turns.</li>
+          </ul>
+          <ul class="arch-points" data-lang="zh">
+            <li><strong>1 组长 + 并行槽位队列：</strong> 组长 Agent（`leader.py`）派发自包含任务合同（`≤4,500B`）与预计算的已知答案正/负夹具（`g5-pos.json` / `g5-neg.json`）。各 Worker 从各自槽位原子认领、隔离写入，互不踩踏。</li>
+            <li><strong>明确误差容忍度（`决定 39`）：</strong> 异路径复算核心指标容差 `±0.05` 个百分点、参考费用舍入单行 `≤$0.01`（整批 `≤$0.05`）、浮点序列 `rtol=1e-9, atol=1e-12`；只要不改变交易方向与门槛判定，微小尾差只记日志备查，不再重跑。</li>
+            <li><strong>结构化短摘要交接（`handoff_meta.py`）：</strong> Worker 结束时只交 5 项 `DONE.md`（结论 `≤150` 字 + 单条复算命令）并自动生成 `DONE.meta.json`；组长每轮只读 `brief.py` 差量包（`≤4,000` 字符）并按 3–5 轮周期换新会话。</li>
           </ul>
         </div>
 
@@ -301,25 +422,37 @@
     <!-- MODULE 3: UNDER THE HOOD (REAL ENGINEERING ARTIFACTS) -->
     <section id="under-the-hood" aria-labelledby="hood-heading">
       <div class="sec-header">
-        <div class="sec-eyebrow">Section 03 · Real Desensitized Engineering Slices</div>
-        <h2 id="hood-heading" class="sec-title">Under the Hood: Contracts, Tolerance Gates &amp; Execution Logs</h2>
-        <p class="sec-desc">
+        <div class="sec-eyebrow">
+          <span data-lang="en">Section 03 · Real Desensitized Engineering Slices</span>
+          <span data-lang="zh">第 03 节 · 真实脱敏工程产物切片</span>
+        </div>
+        <h2 id="hood-heading" class="sec-title">
+          <span data-lang="en">Under the Hood: Contracts, Tolerance Gates &amp; Execution Logs</span>
+          <span data-lang="zh">工程内幕：任务合同、误差容忍度门禁与单次执行核验流水</span>
+        </h2>
+        <p class="sec-desc" data-lang="en">
           Three real, desensitized artifacts extracted directly from the `strategy-vault` production directory (translated from our internal specification into English with local paths normalized).
+        </p>
+        <p class="sec-desc" data-lang="zh">
+          直接从 `strategy-vault` 生产档案中提取并脱敏的 3 份真实工程产物（保留真实阈值、SHA 校验与退出码契约）。
         </p>
       </div>
 
       <!-- Tabs Navigation -->
       <div class="tabs-header" role="tablist">
         <button type="button" class="tab-btn active" data-tab="tab-handoff" role="tab">
-          <span>Artifact 01: Task Contract &amp; Summary Handoff</span>
+          <span data-lang="en">Artifact 01: Task Contract &amp; Summary Handoff</span>
+          <span data-lang="zh">产物 01：任务交接短卡与机器 Sidecar</span>
           <span class="tab-code">DONE.md + DONE.meta.json</span>
         </button>
         <button type="button" class="tab-btn" data-tab="tab-tolerance" role="tab">
-          <span>Artifact 02: Explicit Error Tolerance Gate</span>
+          <span data-lang="en">Artifact 02: Explicit Error Tolerance Gate</span>
+          <span data-lang="zh">产物 02：误差容忍度与拟合计数器门禁</span>
           <span class="tab-code">Decision 39 + scoring_gate.py</span>
         </button>
         <button type="button" class="tab-btn" data-tab="tab-execution" role="tab">
-          <span>Artifact 03: Single-Task Execution &amp; Audit Log</span>
+          <span data-lang="en">Artifact 03: Single-Task Execution &amp; Audit Log</span>
+          <span data-lang="zh">产物 03：单次真实回测与正负夹具核验日志</span>
           <span class="tab-code">Task 20261107-1024-02</span>
         </button>
       </div>
@@ -328,19 +461,29 @@
       <div id="tab-handoff" class="tab-panel active" role="tabpanel">
         <div class="artifact-split">
           <div>
-            <h3 style="margin-top:0;font-size:17px">How Cross-Session Memory Handoffs Work</h3>
-            <p style="font-size:13.8px;color:var(--fg-secondary)">
+            <h3 style="margin-top:0;font-size:17px" data-lang="en">How Cross-Session Memory Handoffs Work</h3>
+            <h3 style="margin-top:0;font-size:17px" data-lang="zh">跨会话短摘要交接机制是如何运作的</h3>
+
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="en">
               Instead of feeding a 200k-token chat transcript into the next agent session, every Worker session terminates by writing a <strong>5-field `DONE.md` card</strong> (`Result`, `One-Line Conclusion ≤150 chars`, `Output Files`, `Single Re-Check Command`, `Blocker/Next`).
             </p>
-            <p style="font-size:13.8px;color:var(--fg-secondary)">
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="zh">
+              我们不再把长达 20 万 Token 的聊天记录塞给下一个会话，而是强制每个 Worker 结束时只写一张 <strong>5 项 `DONE.md` 交接卡</strong>（结果、一句话结论 `≤150` 字、产出文件、单条复算命令、下一步/阻塞）。
+            </p>
+
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="en">
               When `board.py --finish` runs, `handoff_meta.py` scans file modification timestamps inside the claim window, verifies that no protected files (`SESSION-RULES.md`, `STRATEGY-REGISTRY.md`, `_leader/`) were touched, executes the single re-check command, and emits `DONE.meta.json`.
             </p>
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="zh">
+              当执行 `board.py --finish` 时，`handoff_meta.py` 会自动扫描认领时间窗内的文件修改时间，硬拦截任何偷改受保护文件（如 `SESSION-RULES.md`、登记簿、`_组长/`）的行为，实测复算命令退出码，并自动生成 `DONE.meta.json` 供组长秒级预审。
+            </p>
+
             <div class="code-window" style="margin-top:14px">
               <div class="code-bar">
                 <span>_collab/claims/20261107-1024-02/DONE.md (5-Field Worker Card)</span>
                 <span>UTF-8 · 5 Fields</span>
               </div>
-              <pre><span class="hl-com"># Worker 5-Field Summary Card (Translated from Chinese original)</span>
+              <pre><span class="hl-com"># Worker 5-Field Summary Card (Task 20261107-1024-02)</span>
 <span class="hl-key">- Result:</span> Completed
 <span class="hl-key">- Conclusion (≤150 chars):</span> 1997-2011 dev screen (fit=0): at 15bp S1 CAGR 7.91% /
   MaxDD -58.08% eliminated (&gt;55% gate); S2 CAGR 2.52% trailed CASH (2.84%).
@@ -385,15 +528,27 @@
       <div id="tab-tolerance" class="tab-panel" role="tabpanel">
         <div class="artifact-split">
           <div>
-            <h3 style="margin-top:0;font-size:17px">Stopping Rerun Loops via Explicit Error Tolerances</h3>
-            <p style="font-size:13.8px;color:var(--fg-secondary)">
+            <h3 style="margin-top:0;font-size:17px" data-lang="en">Stopping Rerun Loops via Explicit Error Tolerances</h3>
+            <h3 style="margin-top:0;font-size:17px" data-lang="zh">用明确的误差容忍度终结无限重跑死循环</h3>
+
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="en">
               In `Decision 39` and `scoring_gate.py`, we codified exact numerical tolerances for every check layer. If an independent verification run lands inside the tolerance band and preserves trade direction, constituent rankings, and gate verdicts, the discrepancy is <strong>logged as a non-blocking audit note</strong> and the task is closed immediately.
             </p>
-            <ul class="arch-points" style="margin-top:10px">
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="zh">
+              在 `决定 39` 与 `scoring_gate.py` 中，我们为每一层核验明确规定了数值容差上限。只要异路径复算结果落在容差带内，且不改变交易方向、选股名单、整股取整与门槛判定，微小尾差<strong>直接记入审计日志并收口结案</strong>，严禁反复重跑。
+            </p>
+
+            <ul class="arch-points" style="margin-top:10px" data-lang="en">
               <li><strong>Account Metrics (`G3` Gate):</strong> `±0.05` percentage points (`0.0005`) on annualized CAGR, Daily MaxDD, and Calmar ratio.</li>
               <li><strong>Reference Cost &amp; Fee Rounding:</strong> Single-row rounding diff `≤ $0.01` and batch sum diff `≤ $0.05` are logged and halted—never re-run.</li>
               <li><strong>Float Array &amp; Prefix Invariance:</strong> `rtol = 1e-9, atol = 1e-12` on daily return arrays; `≤ 1e-12` max difference on pre-cutoff NAVs when future data is perturbed.</li>
               <li><strong>Model Fitting Budget (`fit_counter.py`):</strong> Hooks `numpy.linalg.lstsq/solve` and model `.fit()` entry points so a study cannot silently run 50 regressions while claiming a single test.</li>
+            </ul>
+            <ul class="arch-points" style="margin-top:10px" data-lang="zh">
+              <li><strong>账户级核心指标（`G3` 门槛）：</strong> 年化 CAGR、日最大回撤 MaxDD、Calmar 比率统一采用 `±0.05` 个百分点（`0.0005`）容差。</li>
+              <li><strong>参考交易成本舍入：</strong> 单行舍入差 `≤ $0.01` 且整批绝对差合计 `≤ $0.05` 直接列注停修，不触发重跑。</li>
+              <li><strong>浮点序列与无前视前缀不变性：</strong> 逐日收益序列比对采用 `rtol = 1e-9, atol = 1e-12`；对未来数据施加正余弦扰动后，截断日前净值最大差须 `≤ 1e-12`。</li>
+              <li><strong>模型拟合次数硬上限（`fit_counter.py`）：</strong> 在脚本入口挂载计数守卫，防止 Agent 表面宣称单次测试、实则在循环里偷偷拟合数十次参数。</li>
             </ul>
           </div>
 
@@ -433,12 +588,21 @@ ARRAY_ATOL = <span class="hl-num">1e-12</span>                  <span class="hl-
       <div id="tab-execution" class="tab-panel" role="tabpanel">
         <div class="artifact-split">
           <div>
-            <h3 style="margin-top:0;font-size:17px">Single-Task Execution &amp; Portable Verification Log</h3>
-            <p style="font-size:13.8px;color:var(--fg-secondary)">
+            <h3 style="margin-top:0;font-size:17px" data-lang="en">Single-Task Execution &amp; Portable Verification Log</h3>
+            <h3 style="margin-top:0;font-size:17px" data-lang="zh">单次真实回测任务执行与正负夹具核验流水</h3>
+
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="en">
               Every study card defines a <strong>Positive Fixture (`P1`)</strong>, a <strong>Negative Deliberate-Fault Fixture (`N1`)</strong>, a <strong>Historical Anchor &amp; Prefix Invariance Test (`P2`)</strong>, and an <strong>Independent Full Re-Check (`P3`)</strong>.
             </p>
-            <p style="font-size:13.8px;color:var(--fg-secondary)">
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="zh">
+              每张研究任务卡在派单前均由组长锁定四道机器判据：<strong>正例已知答案小样（`P1`）</strong>、<strong>负例故意破坏夹具（`N1`）</strong>、<strong>历史锚点与截断前缀不变性（`P2`）</strong>以及<strong>全量独立复算（`P3`）</strong>。
+            </p>
+
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="en">
               Why require a Negative Fixture (`N1`)? Early on, a Worker Agent accidentally wrote a `check.py` script that imported the production script's summary variables and always printed `PASS`. Requiring `check.py --fixture g5-neg.json` to exit with `rc=2` on an injected lookahead error (`signal_lag_days=0`) guarantees the checker actually validates the math.
+            </p>
+            <p style="font-size:13.8px;color:var(--fg-secondary)" data-lang="zh">
+              为什么要强制跑负例夹具（`N1`）？早期曾有 Worker 写的 `check.py` 直接 import 了生产脚本算好的变量自证，导致“无论数据怎么错都永远打印 PASS”。强制要求 `check.py` 对注入了同日成交前视错误（`signal_lag_days=0`）的 `g5-neg.json` 返回非零退出码 `rc=2`，彻底杜绝了“检查器与实现同源假通过”。
             </p>
           </div>
 
@@ -479,10 +643,19 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
     <!-- MODULE 4: SAMPLE BACKTESTS & THE OVERFITTING PUZZLE -->
     <section id="overfitting-puzzle" aria-labelledby="overfitting-heading">
       <div class="sec-header">
-        <div class="sec-eyebrow">Section 04 · Empirical Reality &amp; Statistical Discipline</div>
-        <h2 id="overfitting-heading" class="sec-title">Sample Backtests &amp; The Overfitting Puzzle</h2>
-        <p class="sec-desc">
+        <div class="sec-eyebrow">
+          <span data-lang="en">Section 04 · Empirical Reality &amp; Statistical Discipline</span>
+          <span data-lang="zh">第 04 节 · 真实回测案例与过拟合难题</span>
+        </div>
+        <h2 id="overfitting-heading" class="sec-title">
+          <span data-lang="en">Sample Backtests &amp; The Overfitting Puzzle</span>
+          <span data-lang="zh">真实回测案例：当不同时间窗口给出冲突结论时，如何剔除过拟合</span>
+        </h2>
+        <p class="sec-desc" data-lang="en">
           Why we refuse to claim "market-beating alpha": in quantitative equity research, it is easy to find rules that look extraordinary in a single 15-year window. The real engineering problem is building statistical gates that catch regime-specific overfitting when results conflict across time windows.
+        </p>
+        <p class="sec-desc" data-lang="zh">
+          为什么我们绝不宣称“已找到稳赢市场的圣杯”：在量化研究里，在单一 15 年窗口里凑出一条漂亮曲线极其容易；真正的硬核工程问题，是当同一策略在开发段、留出段和长历史压力段给出冲突结果时，如何用统计检验与制度门禁把过拟合筛掉。
         </p>
       </div>
 
@@ -492,24 +665,46 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
         <!-- CASE STUDY 1 -->
         <article class="case-card">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-            <span class="proj-badge badge-active">Case Study 01 · Cross-Window Reversal</span>
-            <span class="pill pill-flat">Final Verdict: Rejected (No Edge)</span>
+            <span class="proj-badge badge-active" data-lang="en">Case Study 01 · Cross-Window Reversal</span>
+            <span class="proj-badge badge-active" data-lang="zh">案例 01 · 跨时间窗口反转</span>
+            <span class="pill pill-flat" data-lang="en">Final Verdict: Rejected (No Edge)</span>
+            <span class="pill pill-flat" data-lang="zh">最终裁定：不胜出 (驳回)</span>
           </div>
-          <h3>S&amp;P 500 Downside-Beta Penalized Momentum (`2026-10-20`)</h3>
-          <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px">
+          <h3 data-lang="en">S&amp;P 500 Downside-Beta Penalized Momentum (`2026-10-20`)</h3>
+          <h3 data-lang="zh">标普 500 下行 Beta 惩罚动量选股 (`2026-10-20`)</h3>
+
+          <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px" data-lang="en">
             <strong>Hypothesis:</strong> Rank S&amp;P 500 constituents over 126 trading days by penalizing downside beta (`Score = R_126 / (1 + max(beta_down, 0))`, top 5 stocks, ≤2 per SIC industry, 6 staggered tranches, 15 bps cost). Screened by Agent `G3-1019a`; verified on holdout by isolated Agent `G2-1020g`.
+          </p>
+          <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px" data-lang="zh">
+            <strong>策略机制：</strong> 在 126 日动量排序中对市场下跌日的下行 Beta 施加惩罚（`Score = R_126 / (1 + max(beta_down, 0))`，选前 5 只、单 SIC 行业 ≤2 只、六分仓轮动、单边成本 15 bps）。由会话 `G3-1019a` 筛查，隔离会话 `G2-1020g` 执行留出段正式核验。
           </p>
 
           <div class="mini-table-wrap">
             <table class="mini-table">
               <thead>
                 <tr>
-                  <th>Time Window</th>
-                  <th class="num">Base CAGR</th>
-                  <th class="num">Cand CAGR</th>
-                  <th class="num">Cand MaxDD</th>
+                  <th>
+                    <span data-lang="en">Time Window</span>
+                    <span data-lang="zh">检验时间段</span>
+                  </th>
+                  <th class="num">
+                    <span data-lang="en">Base CAGR</span>
+                    <span data-lang="zh">基线年化</span>
+                  </th>
+                  <th class="num">
+                    <span data-lang="en">Cand CAGR</span>
+                    <span data-lang="zh">候选年化</span>
+                  </th>
+                  <th class="num">
+                    <span data-lang="en">Cand MaxDD</span>
+                    <span data-lang="zh">候选日回撤</span>
+                  </th>
                   <th class="num">Calmar</th>
-                  <th>Window Result</th>
+                  <th>
+                    <span data-lang="en">Window Result</span>
+                    <span data-lang="zh">该窗口结果</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -519,7 +714,10 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
                   <td class="num" style="color:var(--win);font-weight:600">9.85%</td>
                   <td class="num">-44.34%</td>
                   <td class="num">0.222</td>
-                  <td><span class="pill pill-win">PASS Path B (+18% Calmar)</span></td>
+                  <td>
+                    <span class="pill pill-win" data-lang="en">PASS Path B (+18% Calmar)</span>
+                    <span class="pill pill-win" data-lang="zh">通过路径 B (卡玛+18%)</span>
+                  </td>
                 </tr>
                 <tr>
                   <td><strong>Pre-Sample M1 (1934–85)</strong></td>
@@ -527,7 +725,10 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
                   <td class="num" style="color:var(--win);font-weight:600">16.36%</td>
                   <td class="num">-66.48%</td>
                   <td class="num">0.246</td>
-                  <td><span class="pill pill-win">PASS Directional</span></td>
+                  <td>
+                    <span class="pill pill-win" data-lang="en">PASS Directional</span>
+                    <span class="pill pill-win" data-lang="zh">M1 方向一致通过</span>
+                  </td>
                 </tr>
                 <tr>
                   <td><strong>Holdout (2012–2025)</strong></td>
@@ -535,7 +736,10 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
                   <td class="num" style="color:var(--lose);font-weight:600">15.59%</td>
                   <td class="num">-29.16%</td>
                   <td class="num">0.535</td>
-                  <td><span class="pill pill-lose">FAIL (p = 0.0000)</span></td>
+                  <td>
+                    <span class="pill pill-lose" data-lang="en">FAIL (p = 0.0000)</span>
+                    <span class="pill pill-lose" data-lang="zh">反转失败 (p = 0.0000)</span>
+                  </td>
                 </tr>
                 <tr>
                   <td><strong>Sub-Window (2019–2025)</strong></td>
@@ -543,38 +747,66 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
                   <td class="num" style="color:var(--lose);font-weight:600">13.43%</td>
                   <td class="num">-32.82%</td>
                   <td class="num">0.409</td>
-                  <td><span class="pill pill-lose">FAIL (-9.80pp/yr Lag)</span></td>
+                  <td>
+                    <span class="pill pill-lose" data-lang="en">FAIL (-9.80pp/yr Lag)</span>
+                    <span class="pill pill-lose" data-lang="zh">严重落后 (-9.80pp/年)</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p style="font-size:13px;color:var(--muted);margin:0">
+          <p style="font-size:13px;color:var(--muted);margin:0" data-lang="en">
             <strong>What We Learned:</strong> Downside-beta penalization cushioned the 2000–2002 dot-com bust and 2008 GFC in the `1997–2011` development set, but systematically filtered out high-beta semiconductor and mega-cap growth leaders during the `2012–2025` expansion. Without strict out-of-sample holdout &amp; sub-window consistency gates, this rule would have been mistakenly deployed.
+          </p>
+          <p style="font-size:13px;color:var(--muted);margin:0" data-lang="zh">
+            <strong>复盘诊断：</strong> 惩罚下行 Beta 在包含互联网泡沫破裂（2000–02）与次贷危机（2008）的 `1997–2011` 开发段起到了防守缓冲作用，但在 `2012–2025` 科技与半导体领涨的结构性牛市中，系统性过滤掉了高弹性领涨股（2019–2025 单风险仓年化落后达 `9.80` 个百分点）。若无留出段与分段一致性硬门禁，该策略极易被误采纳。
           </p>
         </article>
 
         <!-- CASE STUDY 2 -->
         <article class="case-card">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-            <span class="proj-badge badge-active">Case Study 02 · Secular Crash Stress Gate</span>
-            <span class="pill pill-lose">Final Verdict: Eliminated (M1 DD &gt; 55%)</span>
+            <span class="proj-badge badge-active" data-lang="en">Case Study 02 · Secular Crash Stress Gate</span>
+            <span class="proj-badge badge-active" data-lang="zh">案例 02 · 跨世纪极端回撤与零拟合门禁</span>
+            <span class="pill pill-lose" data-lang="en">Final Verdict: Eliminated (M1 DD &gt; 55%)</span>
+            <span class="pill pill-lose" data-lang="zh">最终裁定：淘汰 (M1 回撤超 55%)</span>
           </div>
-          <h3>Sleeve Ratio `V2 40/40/10/10` (`2026-10-15`) &amp; Variance-Drain (`2026-11-07`)</h3>
-          <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px">
+          <h3 data-lang="en">Sleeve Ratio `V2 40/40/10/10` (`2026-10-15`) &amp; Variance-Drain (`2026-11-07`)</h3>
+          <h3 data-lang="zh">仓比方案 `V2 40/40/10/10` (`2026-10-15`) 与方差漏损对冲 (`2026-11-07`)</h3>
+
+          <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px" data-lang="en">
             <strong>Hypothesis:</strong> Shift account sleeve weights from `30% Risk / 20% QLD / 40% Core / 10% Cash` to `40% Risk / 40% QLD / 10% Core / 10% Cash` (`V2`), and separately test a `fit=0` 2:1 short-QLD / long-2xNDX variance-drain overlay during high volatility (`RV20 >= 0.28`).
+          </p>
+          <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px" data-lang="zh">
+            <strong>策略机制：</strong> 测试将四仓目标权重从 `30/20/40/10` 调整为 `40% 风险 / 40% QLD / 10% 核心 / 10% 备用金`（`V2`），以及零统计拟合（`fit=0`）在高波熊市期（`RV20 >= 0.28`）按 2:1 做空 QLD / 做多 2xNDX 收割复利方差漏损。
           </p>
 
           <div class="mini-table-wrap">
             <table class="mini-table">
               <thead>
                 <tr>
-                  <th>Study &amp; Window</th>
-                  <th class="num">Base CAGR</th>
-                  <th class="num">Cand CAGR</th>
-                  <th class="num">Cand MaxDD</th>
+                  <th>
+                    <span data-lang="en">Study &amp; Window</span>
+                    <span data-lang="zh">研究与时间段</span>
+                  </th>
+                  <th class="num">
+                    <span data-lang="en">Base CAGR</span>
+                    <span data-lang="zh">基线年化</span>
+                  </th>
+                  <th class="num">
+                    <span data-lang="en">Cand CAGR</span>
+                    <span data-lang="zh">候选年化</span>
+                  </th>
+                  <th class="num">
+                    <span data-lang="en">Cand MaxDD</span>
+                    <span data-lang="zh">候选日回撤</span>
+                  </th>
                   <th class="num">Calmar</th>
-                  <th>Gate Result</th>
+                  <th>
+                    <span data-lang="en">Gate Result</span>
+                    <span data-lang="zh">门禁判定</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -584,7 +816,10 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
                   <td class="num" style="color:var(--win);font-weight:600">9.33%</td>
                   <td class="num">-45.44%</td>
                   <td class="num">0.205</td>
-                  <td><span class="pill pill-win">PASS Path A</span></td>
+                  <td>
+                    <span class="pill pill-win" data-lang="en">PASS Path A</span>
+                    <span class="pill pill-win" data-lang="zh">开发段通过路径 A</span>
+                  </td>
                 </tr>
                 <tr>
                   <td><strong>V2 · Holdout (2012–2026)</strong></td>
@@ -592,7 +827,10 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
                   <td class="num" style="color:var(--win);font-weight:600">24.96%</td>
                   <td class="num">-24.86%</td>
                   <td class="num">1.004</td>
-                  <td><span class="pill pill-info">+3.66pp (Boot p=0.62 &lt; 0.70)</span></td>
+                  <td>
+                    <span class="pill pill-info" data-lang="en">+3.66pp (Boot p=0.62 &lt; 0.70)</span>
+                    <span class="pill pill-info" data-lang="zh">年化+3.66pp (自助法 0.62 未达 0.70)</span>
+                  </td>
                 </tr>
                 <tr>
                   <td><strong>V2 · M1 Stress (1934–85)</strong></td>
@@ -600,7 +838,10 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
                   <td class="num">7.67%</td>
                   <td class="num" style="color:var(--lose);font-weight:600">-57.04%</td>
                   <td class="num">0.135</td>
-                  <td><span class="pill pill-lose">ELIMINATED (MaxDD &gt; 55%)</span></td>
+                  <td>
+                    <span class="pill pill-lose" data-lang="en">ELIMINATED (MaxDD &gt; 55%)</span>
+                    <span class="pill pill-lose" data-lang="zh">硬线淘汰 (日回撤 &gt; 55%)</span>
+                  </td>
                 </tr>
                 <tr>
                   <td><strong>VarDrain S2 · Dev (fit=0)</strong></td>
@@ -608,14 +849,20 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
                   <td class="num" style="color:var(--lose);font-weight:600">2.52%</td>
                   <td class="num">-1.53%</td>
                   <td class="num">1.647</td>
-                  <td><span class="pill pill-flat">FAIL (Trailed Cash by -0.33pp)</span></td>
+                  <td>
+                    <span class="pill pill-flat" data-lang="en">FAIL (Trailed Cash by -0.33pp)</span>
+                    <span class="pill pill-flat" data-lang="zh">不胜出 (跑输现金 -0.33pp/年)</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p style="font-size:13px;color:var(--muted);margin:0">
+          <p style="font-size:13px;color:var(--muted);margin:0" data-lang="en">
             <strong>What We Learned:</strong> Even when a candidate (`V2 40/40/10/10`) beats the baseline in both `1997–2011` and `2012–2026` (+3.66 pp/yr out-of-sample), our 252-day block bootstrap (`p = 0.620 < 0.70`) and `1934–1985` M1 crash gate (`-57.04%` drawdown during 1937–1942) caught that the gain came from tail-risk leverage rather than robust alpha.
+          </p>
+          <p style="font-size:13px;color:var(--muted);margin:0" data-lang="zh">
+            <strong>复盘诊断：</strong> 即便候选方案（`V2 40/40/10/10`）在开发段和 2012–2026 留出段双双跑赢基线（留出年化高 `+3.66pp`），252 日分块自助法（`p = 0.620 < 0.70`）与 `1934–1985` M1 压力测试（1937–42 回撤达 `-57.04%` 破 `-55%` 红线）依然识别出该超额来自尾部杠杆暴露而非稳健 Alpha，予以否决。
           </p>
         </article>
 
@@ -623,34 +870,52 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
 
       <!-- The 6-Gate Overfitting Defense Funnel -->
       <div class="funnel-box">
-        <h3 style="margin:0 0 4px;font-size:16.5px">How Our Multi-Agent Workflow Separates Signal from Overfitting (The 6-Gate Funnel)</h3>
-        <p style="margin:0;font-size:13.5px;color:var(--muted)">
+        <h3 style="margin:0 0 4px;font-size:16.5px" data-lang="en">How Our Multi-Agent Workflow Separates Signal from Overfitting (The 6-Gate Funnel)</h3>
+        <h3 style="margin:0 0 4px;font-size:16.5px" data-lang="zh">多智能体系统如何区分真实统计信号与过拟合（六道防过拟合漏斗）</h3>
+
+        <p style="margin:0;font-size:13.5px;color:var(--muted)" data-lang="en">
           Every research card in `strategy-vault` is scored on execution rigor (`G1–G6`), never on whether the backtest return is positive (`SESSION-RULES 3b`). Negative results earn full credit so agents have zero incentive to p-hack.
         </p>
+        <p style="margin:0;font-size:13.5px;color:var(--muted)" data-lang="zh">
+          在 `strategy-vault` 中，所有 Worker 会话只按证据与规范（`G1–G6`）计分，<strong>负结论与胜出同等计分</strong>（`SESSION-RULES 3b`），从机制上消除 Agent 为了“迎合正收益”而改参数凑数的动机。
+        </p>
+
         <div class="funnel-grid">
           <div class="funnel-step">
-            <b>1. Pre-Registration &amp; Fit Cap (`fit_counter.py`)</b>
-            <span>`study.json` SHA-256 is locked before running numbers. `fit_counter.py` enforces `fit_count &lt;= N` (often `fit=0`) at runtime.</span>
+            <b data-lang="en">1. Pre-Registration &amp; Fit Cap (`fit_counter.py`)</b>
+            <b data-lang="zh">1. 预先登记哈希与拟合计数上限 (`fit_counter.py`)</b>
+            <span data-lang="en">`study.json` SHA-256 is locked before running numbers. `fit_counter.py` enforces `fit_count &lt;= N` (often `fit=0`) at runtime.</span>
+            <span data-lang="zh">跑数前先锁定 `study.json` 的 SHA-256；运行时由 `fit_counter.py` 硬卡模型拟合次数上限（多数机制检验强制 `fit=0`）。</span>
           </div>
           <div class="funnel-step">
-            <b>2. Strict 3-Regime Isolation</b>
-            <span>Development screening (`1997–2011`, max 3 variants) is physically truncated from Out-of-Sample Holdout (`2012–2026`) and Pre-Sample `M1 (1934–1985)`.</span>
+            <b data-lang="en">2. Strict 3-Regime Isolation</b>
+            <b data-lang="zh">2. 三大历史样本段物理隔离</b>
+            <span data-lang="en">Development screening (`1997–2011`, max 3 variants) is physically truncated from Out-of-Sample Holdout (`2012–2026`) and Pre-Sample `M1 (1934–1985)`.</span>
+            <span data-lang="zh">开发段筛查（`1997–2011`，最多 3 个变体）在字符串读取层物理截断，严禁触碰留出段（`2012–2026`）与预样本段 `M1 (1934–1985)`。</span>
           </div>
           <div class="funnel-step">
-            <b>3. Crash-Year &amp; Exposure-Matched Ablation</b>
-            <span>Defensive timing rules must beat an equal-average-exposure baseline (`k * B + (1-k) * Cash`) even after removing `2000–02` and `2008`.</span>
+            <b data-lang="en">3. Crash-Year &amp; Exposure-Matched Ablation</b>
+            <b data-lang="zh">3. 危机年份剔除与同平均敞口对照 (`k*B`)</b>
+            <span data-lang="en">Defensive timing rules must beat an equal-average-exposure baseline (`k * B + (1-k) * Cash`) even after removing `2000–02` and `2008`.</span>
+            <span data-lang="zh">防守择时规则在剔除 `2000–02` 与 `2008` 股灾年后，年化仍不得低于同日均股票敞口的固定比例基线（`k*B`）。</span>
           </div>
           <div class="funnel-step">
-            <b>4. Friction, Borrow &amp; `delay1` Lag Stress</b>
-            <span>All candidates are tested at `15 bps` and `30 bps` (2x cost), `100 bps/yr` short borrow fees, and next-open (`delay1`) signal execution.</span>
+            <b data-lang="en">4. Friction, Borrow &amp; `delay1` Lag Stress</b>
+            <b data-lang="zh">4. 双倍成本、借券费与 `delay1` 晚一天成交压力</b>
+            <span data-lang="en">All candidates are tested at `15 bps` and `30 bps` (2x cost), `100 bps/yr` short borrow fees, and next-open (`delay1`) signal execution.</span>
+            <span data-lang="zh">凡报改善必须同时报告 `15 bps` / `30 bps`（2 倍成本）、做空借券费及信号次日开盘/晚一天（`delay1`）口径。</span>
           </div>
           <div class="funnel-step">
-            <b>5. Holdout Wear Penalty (`p &gt;= 1 - 0.30/N`)</b>
-            <span>Each formal holdout test increments $N$ (`Decision 53`). At $N=5$, block-bootstrap win probability must reach `p &gt;= 0.94` to prevent multiple-testing decay.</span>
+            <b data-lang="en">5. Holdout Wear Penalty (`p &gt;= 1 - 0.30/N`)</b>
+            <b data-lang="zh">5. 留出段磨损惩罚公式 (`p &gt;= 1 - 0.30/N`)</b>
+            <span data-lang="en">Each formal holdout test increments $N$ (`Decision 53`). At $N=5$, block-bootstrap win probability must reach `p &gt;= 0.94` to prevent multiple-testing decay.</span>
+            <span data-lang="zh">留出段每正式检验一次累计次数 $N$ 加 1（`决定 53`）；当前 $N=5$ 时自助法胜出概率门槛升至 `p &gt;= 0.94`，防止多重检验磨损。</span>
           </div>
           <div class="funnel-step">
-            <b>6. 12-Month Forward Shadow Ledger (`shadow.py`)</b>
-            <span>Candidates passing statistical gates must run side-by-side in our daily paper-trading shadow ledger for 12 months before replacing baseline rules.</span>
+            <b data-lang="en">6. 12-Month Forward Shadow Ledger (`shadow.py`)</b>
+            <b data-lang="zh">6. 12 个月前推影子账本并行验证 (`shadow.py`)</b>
+            <span data-lang="en">Candidates passing statistical gates must run side-by-side in our daily paper-trading shadow ledger for 12 months before replacing baseline rules.</span>
+            <span data-lang="zh">通过统计门禁的初步胜出候选，仍须在每日影子账本中与现行规则同段并行记账满 12 个月非劣后方可正式采纳。</span>
           </div>
         </div>
       </div>
@@ -659,21 +924,34 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
       <div class="explorer-card">
         <div class="explorer-top">
           <div>
-            <h3 style="margin:0 0 6px;font-size:17px">Interactive Trial Ledger (`results/trials.csv` Sample)</h3>
-            <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px">
+            <h3 style="margin:0 0 6px;font-size:17px" data-lang="en">Interactive Trial Ledger (`results/trials.csv` Sample)</h3>
+            <h3 style="margin:0 0 6px;font-size:17px" data-lang="zh">交互式策略检测总表（`results/trials.csv` 真实抽样）</h3>
+
+            <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px" data-lang="en">
               Every variant tested by any Worker Agent—including failed screens and eliminated hypotheses—is logged to `results/trials.csv`. Filter or sort the 30 representative runs below to inspect how the gates reject false positives:
             </p>
-            <ul style="margin:0;padding-left:18px;font-size:12.5px;color:var(--muted)">
+            <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px" data-lang="zh">
+              任何 Worker 试过的每一个策略变体（含筛查失败与淘汰项）都必须逐行记入 `results/trials.csv`。你可以通过下方筛选器或点击表头排序，查看 30 条代表性回测记录：
+            </p>
+
+            <ul style="margin:0;padding-left:18px;font-size:12.5px;color:var(--muted)" data-lang="en">
               <li><strong>Different windows cannot be naively compared:</strong> `1997–2011` includes two secular crashes (2000–02, 2008); `2012–2026` is a secular bull market; `M1 1934–1985` tests pre-sample regime survival.</li>
               <li><strong>Red dashed line (`-50%` MaxDD):</strong> Hard qualification threshold (`目标函数.md`). Any candidate exceeding `-55%` is automatically eliminated.</li>
               <li><strong>Click any column header</strong> in the table below to sort by CAGR, Daily MaxDD, Calmar, or Study Date.</li>
+            </ul>
+            <ul style="margin:0;padding-left:18px;font-size:12.5px;color:var(--muted)" data-lang="zh">
+              <li><strong>不同检测时间段不可直接混比：</strong> `1997–2011` 开发段含两轮大熊市（2000–02、2008）；`2012–2026` 为长牛留出段；`M1 1934–1985` 用于检验跨时代生存能力。</li>
+              <li><strong>散点图红色虚线（`-50%` 日最大回撤）：</strong> 目标函数合格线，深于 `-55%` 直接一票否决淘汰。</li>
+              <li><strong>点击下方任意表头</strong>可按年化收益率、日最大回撤、卡玛比率或日期排序。</li>
             </ul>
           </div>
 
           <div class="scatter-wrap">
             <div class="scatter-title">
-              <span>CAGR (%) vs. Daily Max Drawdown (%)</span>
-              <span>Hover points for study details</span>
+              <span data-lang="en">CAGR (%) vs. Daily Max Drawdown (%)</span>
+              <span data-lang="zh">年化收益率 (%) × 日最大回撤 (%)</span>
+              <span data-lang="en">Hover points for study details</span>
+              <span data-lang="zh">鼠标悬停查看研究详情</span>
             </div>
             <svg id="scatter-svg" viewBox="0 0 560 260" style="width:100%;height:auto;display:block" role="img" aria-label="Scatter plot of CAGR vs Daily Maximum Drawdown"></svg>
           </div>
@@ -681,20 +959,8 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
 
         <div class="controls-bar">
           <select id="filter-fam" aria-label="Filter by Strategy Family"></select>
-          <select id="filter-stg" aria-label="Filter by Testing Stage">
-            <option value="">All Stages</option>
-            <option value="Formal (Holdout)">Formal (Holdout 2012+)</option>
-            <option value="Formal (Pre-Sample M1)">Formal (Pre-Sample M1 1934–85)</option>
-            <option value="Screening">Screening (Dev 1997–2011)</option>
-            <option value="Baseline">Baseline Control</option>
-          </select>
-          <select id="filter-ver" aria-label="Filter by Verdict">
-            <option value="">All Verdicts</option>
-            <option value="win">Window Pass (Path A / B)</option>
-            <option value="flat">Rejected: No Edge / Reversal</option>
-            <option value="lose">Eliminated (MaxDD Gate Breach)</option>
-            <option value="info">Baseline / Diagnostic</option>
-          </select>
+          <select id="filter-stg" aria-label="Filter by Testing Stage"></select>
+          <select id="filter-ver" aria-label="Filter by Verdict"></select>
           <input id="filter-q" type="search" placeholder="Search study name, rule variant, or failure reason..." aria-label="Search trials" />
           <span id="ledger-count" class="count-badge"></span>
         </div>
@@ -703,15 +969,42 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
           <table class="ledger-table">
             <thead>
               <tr>
-                <th data-sort="date">Date ↕</th>
-                <th data-sort="study">Study / Family ↕</th>
-                <th data-sort="variant">Rule Variant &amp; Engineering Diagnosis</th>
-                <th data-sort="stage">Stage ↕</th>
-                <th data-sort="window">Evaluation Window</th>
-                <th data-sort="cagr" class="num">CAGR % ↕</th>
-                <th data-sort="maxdd" class="num">Daily MaxDD % ↕</th>
-                <th data-sort="calmar" class="num">Calmar ↕</th>
-                <th data-sort="verdict">Gate Verdict ↕</th>
+                <th data-sort="date">
+                  <span data-lang="en">Date ↕</span>
+                  <span data-lang="zh">日期 ↕</span>
+                </th>
+                <th data-sort="study">
+                  <span data-lang="en">Study / Family ↕</span>
+                  <span data-lang="zh">研究名 / 家族 ↕</span>
+                </th>
+                <th data-sort="variant">
+                  <span data-lang="en">Rule Variant &amp; Engineering Diagnosis</span>
+                  <span data-lang="zh">规则变体与复盘诊断</span>
+                </th>
+                <th data-sort="stage">
+                  <span data-lang="en">Stage ↕</span>
+                  <span data-lang="zh">阶段 ↕</span>
+                </th>
+                <th data-sort="window">
+                  <span data-lang="en">Evaluation Window</span>
+                  <span data-lang="zh">检测时间段</span>
+                </th>
+                <th data-sort="cagr" class="num">
+                  <span data-lang="en">CAGR % ↕</span>
+                  <span data-lang="zh">年化 % ↕</span>
+                </th>
+                <th data-sort="maxdd" class="num">
+                  <span data-lang="en">Daily MaxDD % ↕</span>
+                  <span data-lang="zh">日最大回撤 % ↕</span>
+                </th>
+                <th data-sort="calmar" class="num">
+                  <span data-lang="en">Calmar ↕</span>
+                  <span data-lang="zh">卡玛 ↕</span>
+                </th>
+                <th data-sort="verdict">
+                  <span data-lang="en">Gate Verdict ↕</span>
+                  <span data-lang="zh">判定 ↕</span>
+                </th>
               </tr>
             </thead>
             <tbody id="ledger-tbody"></tbody>
@@ -724,9 +1017,13 @@ $ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
   </main>
 
   <footer class="footer">
-    <div style="max-width:860px;margin:0 auto">
+    <div style="max-width:860px;margin:0 auto" data-lang="en">
       <strong>Jiarong Li — Independent Builder Portfolio &amp; `strategy-vault` Engineering Showcase</strong><br />
       <span>All research artifacts and backtest metrics on this page are desensitized engineering records for academic and portfolio demonstration only. Nothing on this site constitutes financial or investment advice.</span>
+    </div>
+    <div style="max-width:860px;margin:0 auto" data-lang="zh">
+      <strong>李佳嵘 (Jiarong Li) — 独立开发者作品集与 `strategy-vault` 工程展示</strong><br />
+      <span>本页面展示的所有研究产物与回测指标均为脱敏后的工程实验记录，仅用于个人作品集与工程方法展示。以上仅供参考，不构成投资建议，我也不是财务顾问。</span>
     </div>
   </footer>
 
