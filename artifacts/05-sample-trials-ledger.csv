@@ -1,0 +1,31 @@
+date,family,study,variant,stage,window,cagr_pct,daily_maxdd_pct,calmar,verdict
+2026-10-14,Sleeve Allocation,formal-qld-from-core,30/40/20/10 Allocation,Formal (Holdout),Holdout 2012-01 to 2026-09,22.12,-24.30,0.910,Pass Path A (Window Only - Failed Bootstrap p=0.428)
+2026-10-14,Sleeve Allocation,formal-qld-from-core,30/40/20/10 Allocation,Formal (Pre-Sample M1),M1 S&P 1934-1985,7.93,-56.10,0.141,Eliminated (MaxDD > 55%)
+2026-10-15,Sleeve Allocation,formal-ratio-v2,V2 40/40/10/10 (6-Tranche),Formal (Holdout),Holdout 2012-01 to 2026-09,24.96,-24.86,1.004,Pass Path A (Window Only - Failed Bootstrap p=0.620)
+2026-10-15,Sleeve Allocation,formal-ratio-v2,V2 40/40/10/10 (6-Tranche),Formal (Pre-Sample M1),M1 S&P 1934-1985,7.67,-57.04,0.135,Eliminated (MaxDD > 55%)
+2026-10-15,Sleeve Allocation,formal-spy2x-x1,30/20/20(2x)/10/20 + Long Bond,Formal (Holdout),Holdout 2012-01 to 2026-09,20.84,-28.80,0.723,No Edge
+2026-10-15,Sleeve Allocation,formal-spy2x-x1,30/20/20(2x)/10/10 + Long Bond,Formal (Pre-Sample M1),M1 S&P 1934-1985,6.63,-56.45,0.117,Eliminated (MaxDD > 55%)
+2026-10-16,Core & Sleeve,formal-core-equal-weight,V1 S&P 500 Equal-Weight Core,Formal (Holdout),Holdout 2012-2025,17.85,-24.35,0.733,No Edge
+2026-10-16,Core & Sleeve,formal-core-equal-weight,Baseline SPY Core Control,Formal (Holdout),Holdout 2012-2025,18.59,-23.31,0.798,Baseline Control
+2026-10-20,Risk Sleeve Selection,formal-downside-beta,V1 Downside-Beta Penalized 126d Mom,Screening (Dev),Dev 1997-2011,9.85,-44.34,0.222,Pass Path B (Dev Only)
+2026-10-20,Risk Sleeve Selection,formal-downside-beta,V1 Downside-Beta Penalized 126d Mom,Formal (Holdout),Holdout 2012-01 to 2025-12,15.59,-29.16,0.535,No Edge (Holdout Reversal p=0.0000)
+2026-10-20,Risk Sleeve Selection,formal-downside-beta,V1 Downside-Beta Penalized 126d Mom,Formal (Pre-Sample M1),M1 Stocks 1934-1985,16.36,-66.48,0.246,No Edge (Split Halves Failed)
+2026-10-27,Regime & Exposure Gate,formal-hard-ma10-overlay,HARD Monthly Close < 10M SMA Exit,Formal (Holdout),Holdout 2012-2025 (6-Tranche),17.10,-23.67,0.722,No Edge (Bootstrap p=0.0005)
+2026-10-15,QLD Timing,screen-qld-streak-exit,V1 Consecutive Down-Streak Exit,Screening (Dev),Dev 1997-2011,6.01,-47.24,0.127,No Edge
+2026-10-15,QLD Timing,screen-qld-streak-exit,V3 3-Streak Exit + Vol Filter,Screening (Dev),Dev 1997-2011,6.96,-43.54,0.160,No Edge
+2026-10-15,Risk Sleeve Selection,screen-erc-crsp-dev,V1 Equal-Risk-Contribution 60d (Cap 35%),Screening (Dev),Dev 1997-2011 (CRSP),9.52,-46.98,0.203,No Edge
+2026-10-15,Risk Sleeve Selection,screen-no-sector-cap,V1 Unconstrained Sector Concentration,Screening (Dev),Dev 1997-2011 (CRSP),7.83,-50.29,0.156,Eliminated (Dev DD Gate)
+2026-10-16,Risk Sleeve Selection,screen-quality-momentum,V1 Gross Profitability (GPA) Filter,Screening (Dev),Dev 1997-2011,8.46,-46.10,0.184,No Edge
+2026-10-16,Risk Sleeve Selection,screen-risk-adjusted-mom,V1 Sharpe-Ranked 126d Momentum,Screening (Dev),Dev 1997-2011,9.07,-45.20,0.201,No Edge
+2026-10-18,Risk Sleeve Selection,screen-acceleration,V1 Momentum Acceleration (63d vs 126d),Screening (Dev),Dev 1997-2011,7.42,-44.04,0.168,No Edge
+2026-10-19,Risk Sleeve Selection,screen-intraday-momentum,V1 Open-to-Close Component 126d,Screening (Dev),Dev 1997-2011,6.37,-48.70,0.131,Eliminated (Dev DD Gate)
+2026-10-19,Risk Sleeve Selection,screen-overnight-momentum,V1 Close-to-Open Overnight 126d,Screening (Dev),Dev 1997-2011,5.94,-51.70,0.115,Eliminated (MaxDD > 50%)
+2026-10-19,Risk Sleeve Selection,screen-signed-path-efficiency,V1 Signed Path Efficiency (Kaufman ER),Screening (Dev),Dev 1997-2011,9.36,-40.56,0.231,No Edge (Crash-Year Gate)
+2026-10-20,Fundamental & Event,screen-earnings-drift,V1 3-Day Earnings Announcement Return (EAR),Screening (Dev),Dev 1997-2011,6.63,-49.40,0.134,No Edge
+2026-10-20,Fundamental & Event,screen-asset-growth,V1 Low Asset-Growth x Momentum,Screening (Dev),Dev 1997-2011,9.00,-42.86,0.210,No Edge
+2026-10-21,Core & Macro Hedge,screen-gold-lbma-dev,V1 20% Gold + 10M SMA Gate,Screening (Dev),Dev 1997-2011 (FactSet LBMA),10.48,-35.55,0.295,No Edge (Crash-Year Gate)
+2026-10-28,Fundamental & Event,screen-corp-event-drift,V1 Stock Split / Dividend Hike Drift,Screening (Dev),Dev 1997-2011,14.67,-57.38,0.256,Eliminated (MaxDD > 55%)
+2026-11-05,Long-History Multi-Rule,five-longest-G870 (MV),MV Volatility-Managed QLD,Diagnostic (Common Window),Common 2012-2025 (15 bps),16.92,-20.97,0.807,Diagnostic Trade-off
+2026-11-05,Long-History Multi-Rule,five-longest-G870 (RULE_B),Current Baseline Rule B (100% Sleeve),Baseline Control,Common 2012-2025 (15 bps),23.67,-47.37,0.500,Baseline Control
+2026-11-07,QLD Timing,qld-ndx-vardrain-arb-dev,S1 Rule B + 2:1 Variance-Drain Overlay (15bp),Screening (Dev fit=0),Dev 1997-2011 (3776 days),7.91,-58.08,0.136,Eliminated (MaxDD > 55%)
+2026-11-07,QLD Timing,qld-ndx-vardrain-arb-dev,S2 Standalone 2:1 Variance-Drain Band08 (15bp),Screening (Dev fit=0),Dev 1997-2011 (3776 days),2.52,-1.53,1.647,No Edge (Trailed Cash 2.84%)

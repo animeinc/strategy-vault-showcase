@@ -1,0 +1,32 @@
+{
+  "_comment": "Desensitized machine-generated handoff sidecar (DONE.meta.json) produced by board.py --finish via handoff_meta.py",
+  "schema_version": "handoff-meta-1",
+  "task_id": "20261107-1024-02",
+  "claim_id": "20261107-1024-02",
+  "session": "G5-1107d",
+  "executor_who": "worker_slot_g5",
+  "status": "SUCCESS",
+  "acceptance": "PENDING_LEADER_AUDIT",
+  "exit_code": 0,
+  "exit_code_source": "board_measured",
+  "recheck_elapsed_s": 4.028523,
+  "recheck_last_line": "CHECK_OK paths=21 files=15 run_lines=343 check_lines=270 fit_count=0",
+  "output_dir_sha_before": "93570e13cc90380dd42d50d81a166a56296c9ce3dcda690c11dfb161b6e0c1ba",
+  "output_dir_sha_after": "93570e13cc90380dd42d50d81a166a56296c9ce3dcda690c11dfb161b6e0c1ba",
+  "summary": "1997-2011 dev screen (fit=0): at 15bp S1 CAGR 7.91% / MaxDD -58.08% eliminated (>55% gate); S2 CAGR 2.52% trailed CASH (2.84%), no edge.",
+  "summary_truncated": false,
+  "summary_max_chars": 150,
+  "blocker": "none",
+  "tokens_used": null,
+  "files_listed": [
+    "03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/run_study.py",
+    "03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py",
+    "03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/study.json",
+    "03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/summary_metrics.csv",
+    "03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/results/trials.csv",
+    "03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/REPORT.md",
+    "03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/DELIVERY.json"
+  ],
+  "protected_paths_modified": [],
+  "anomalies": []
+}

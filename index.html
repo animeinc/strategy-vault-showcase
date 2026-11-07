@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Jiarong Li — Builder Portfolio & Multi-Agent Quantitative Research Vault</title>
+  <meta name="description" content="Independent builder exploring AI agent workflows, rule-based U.S. equity strategy research, and applied fintech tools (TariffDesk)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#top" class="brand">
+        <span class="brand-dot"></span>
+        <span>Jiarong Li</span>
+        <span class="brand-tag">Builder Portfolio</span>
+      </a>
+      <nav class="nav-links" aria-label="Section Navigation">
+        <a href="#portfolio"><span class="nav-num">01</span>Portfolio &amp; Origin</a>
+        <a href="#architecture"><span class="nav-num">02</span>System Architecture</a>
+        <a href="#under-the-hood"><span class="nav-num">03</span>Under the Hood</a>
+        <a href="#overfitting-puzzle"><span class="nav-num">04</span>Backtests &amp; Overfitting</a>
+      </nav>
+      <button id="theme-toggle" class="theme-btn" type="button" aria-label="Toggle color theme">Dark Mode</button>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+
+    <!-- MODULE 1: HEADER & MINI-PORTFOLIO OVERVIEW -->
+    <section id="portfolio" aria-labelledby="portfolio-heading">
+      <div class="hero-card">
+        <div class="hero-top">
+          <div>
+            <h1 id="portfolio-heading" class="builder-name">Jiarong Li</h1>
+            <p class="builder-role">Independent builder exploring AI agent workflows, quantitative market research, and applied fintech tools.</p>
+            <div class="builder-meta">
+              <span class="meta-pill">B.Eng. in Electronic Engineering (Year 1) · Tsinghua University</span>
+              <span class="meta-pill">Focus: Multi-Agent Systems · Rule-Based Backtesting · Applied Fintech</span>
+            </div>
+          </div>
+          <div class="status-banner" role="note">
+            <strong>Honest Builder Status: Work in Progress / Testing</strong>
+            No cherry-picked equity curves or claims of "beating the market." This page documents how I re-architected a multi-agent research workflow and how it tests rule-based U.S. stock strategies against overfitting.
+          </div>
+        </div>
+
+        <!-- Two Independent Projects Portfolio Grid -->
+        <div class="portfolio-grid">
+
+          <!-- Project 01: Strategy-Vault (Primary Deep Dive) -->
+          <article class="proj-card featured">
+            <div>
+              <div class="proj-head">
+                <span class="proj-badge badge-active">Featured Deep Dive (Sections 02–04 Below)</span>
+                <span class="proj-badge badge-wip">Status: In Testing</span>
+              </div>
+              <h2 class="proj-title">01 / AI-Assisted U.S. Equity Strategy Research (`strategy-vault`)</h2>
+              <div class="proj-period">Independent Project · Sep 2026 – Present · 50 hrs/wk</div>
+              <ul class="proj-list">
+                <li><strong>Origin:</strong> Started trading U.S. stocks in early 2026 and realized my biggest losses came from emotional, momentum-chasing decisions (buying into rallies, panic-selling dips). Replaced discretionary judgment with a <strong>rule-based daily trading strategy</strong>.</li>
+                <li><strong>Engineering Refactor:</strong> Rebuilt an early multi-agent loop into a <strong>1 Leader + Parallel Workers</strong> architecture with explicit <strong>error tolerances</strong> for every check and <strong>short summary handoffs</strong>—cutting research time by <strong>~50%</strong> and token usage by <strong>~70%</strong>.</li>
+                <li><strong>Current Focus:</strong> Running historical backtests across U.S. market regimes (1927–2026) and resolving cross-window conflicts to separate real statistical signal from overfitting and noise.</li>
+              </ul>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--line)">
+              <a href="#architecture" class="mini-btn active" style="text-decoration:none">View Architecture Refactor ↓</a>
+              <a href="#under-the-hood" class="mini-btn" style="text-decoration:none">Inspect Real Artifacts ↓</a>
+              <a href="#overfitting-puzzle" class="mini-btn" style="text-decoration:none">Explore Trial Ledger ↓</a>
+              <a href="https://github.com/animeinc/strategy-vault-showcase" target="_blank" rel="noopener noreferrer" class="mini-btn" style="text-decoration:none">GitHub Repo ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 02: TariffDesk (Shopify App) -->
+          <article class="proj-card">
+            <div>
+              <div class="proj-head">
+                <span class="proj-badge badge-active">Project 02 · Applied E-Commerce Fintech</span>
+                <span class="proj-badge badge-wip">Status: In Testing</span>
+              </div>
+              <h2 class="proj-title">02 / TariffDesk — Shopify HS/HTS &amp; Landed-Cost Engine</h2>
+              <div class="proj-period">Independent Project · Sep 2026 – Present · Built with AI Coding Agents</div>
+              <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px">
+                Assigns <strong>HS/HTS customs codes</strong> to every product in a cross-border Shopify merchant's catalogue, cites the legal basis (GRI &amp; Chapter Notes), and calculates <strong>Section 301 tariffs &amp; total landed cost</strong>. Instead of blind LLM guessing, every classification is gated by a three-tier confidence protocol:
+              </p>
+
+              <div class="tier-grid">
+                <div class="tier-item tier-auto">
+                  <b>1. Auto-Apply</b>
+                  High confidence; unambiguous material &amp; GRI legal match.
+                </div>
+                <div class="tier-item tier-review">
+                  <b>2. Flag for Review</b>
+                  Composite/dual-use ambiguity; surfaces duty spread for human review.
+                </div>
+                <div class="tier-item tier-refuse">
+                  <b>3. Refuse to Guess</b>
+                  Missing material/spec evidence; halts rather than hallucinating a code.
+                </div>
+              </div>
+
+              <!-- Interactive TariffDesk Mini-Preview -->
+              <div class="tariff-demo-box">
+                <div style="font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-bottom:6px">
+                  INTERACTIVE PREVIEW — Click a confidence tier to inspect sample engine output:
+                </div>
+                <div class="tariff-demo-controls">
+                  <button type="button" class="mini-btn active" data-tariff-sample="auto">Tier 1: Auto-Apply</button>
+                  <button type="button" class="mini-btn" data-tariff-sample="review">Tier 2: Flag for Review</button>
+                  <button type="button" class="mini-btn" data-tariff-sample="refuse">Tier 3: Refuse to Guess</button>
+                </div>
+                <div id="tariff-demo-output" class="tariff-output"></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- 3-Step Narrative Strip (Strictly Aligned with Application Essay) -->
+        <div class="origin-strip">
+          <div class="origin-step">
+            <div class="origin-step-num">Phase 01 · Why I Started It</div>
+            <h3>Eliminating Emotional Trading</h3>
+            <p>When I began trading U.S. equities in early 2026, my worst drawdowns came from emotional reactions—chasing breakouts late and selling into short-term panic. I set out to codify a strictly rule-based daily strategy researched and audited by AI agents.</p>
+          </div>
+          <div class="origin-step">
+            <div class="origin-step-num">Phase 02 · What Broke &amp; How I Fixed It</div>
+            <h3>Stopping the Infinite Rerun Loop</h3>
+            <p>Early peer agents had no definition of "good enough"—they looped endlessly over `0.001%` rounding differences, burning my token budget. I refactored the system into <strong>1 Leader + Parallel Workers</strong> with explicit error tolerances and 150-char summary handoffs.</p>
+          </div>
+          <div class="origin-step">
+            <div class="origin-step-num">Phase 03 · Where It Stands Today</div>
+            <h3>Signal vs. Overfitting in Testing</h3>
+            <p>A rule that shines in `1997–2011` often fails in `2012–2025` or crashes in `1934–1985`. Rather than curve-fitting until backtests look pretty, our current work focuses on statistical gates that reject false positives across regimes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 2: SYSTEM ARCHITECTURE (BEFORE VS. AFTER) -->
+    <section id="architecture" aria-labelledby="arch-heading">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Section 02 · Multi-Agent Workflow Engineering</div>
+        <h2 id="arch-heading" class="sec-title">System Architecture: From Infinite Review Loops to Leader–Worker Orchestration</h2>
+        <p class="sec-desc">
+          How restructuring agent coordination, defining explicit numerical tolerances (`Decision 39`), and replacing full-history context dumps with structured summary handoffs (`handoff-meta-1`) halved research turnaround time and cut token consumption by ~70%.
+        </p>
+      </div>
+
+      <!-- Quantified Impact KPIs -->
+      <div class="kpi-banner">
+        <div class="kpi-card">
+          <div class="kpi-val">~50%</div>
+          <div class="kpi-label">Research Time Saved</div>
+          <div class="kpi-sub">Parallel slot queues (`C1`, `C2`, `G1–G5`) + single-pass tolerance gate</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">~70%</div>
+          <div class="kpi-label">Token Consumption Cut</div>
+          <div class="kpi-sub">Measured 72.8% context payload drop (`8,551` → `2,329` chars/turn)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">±0.05 pp</div>
+          <div class="kpi-label">Explicit Metric Tolerance</div>
+          <div class="kpi-sub">`≤$0.01` row rounding logged only; stops infinite agent re-runs</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">≤150 chars</div>
+          <div class="kpi-label">Structured Handoff Card</div>
+          <div class="kpi-sub">5-field `DONE.md` + `DONE.meta.json` sidecar; zero chat history bloat</div>
+        </div>
+      </div>
+
+      <!-- Before vs After Comparison -->
+      <div class="arch-grid">
+
+        <!-- BEFORE PANEL -->
+        <div class="arch-panel before">
+          <div class="arch-header">
+            <h3>Before: Unbounded Peer-to-Peer Review Loop</h3>
+            <span class="pill pill-lose">Early Bottleneck</span>
+          </div>
+
+          <div class="diagram-box" aria-label="Before Architecture Diagram">
+            <svg viewBox="0 0 500 185" style="width:100%;height:auto;display:block" role="img">
+              <defs>
+                <marker id="arr-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#b42d22" />
+                </marker>
+              </defs>
+              <!-- Nodes -->
+              <rect x="14" y="32" width="125" height="54" rx="6" fill="none" stroke="#b42d22" stroke-width="1.5" />
+              <text x="76" y="55" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">Data Agent</text>
+              <text x="76" y="72" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#8d9b95">Fetch &amp; Clean CSV</text>
+
+              <rect x="186" y="32" width="128" height="54" rx="6" fill="none" stroke="#b42d22" stroke-width="1.5" />
+              <text x="250" y="55" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">Backtest Agent</text>
+              <text x="250" y="72" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#8d9b95">Run Strategy Sim</text>
+
+              <rect x="360" y="32" width="126" height="54" rx="6" fill="none" stroke="#b42d22" stroke-width="1.5" />
+              <text x="423" y="55" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">Review Agent</text>
+              <text x="423" y="72" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#8d9b95">Recompute &amp; Diff</text>
+
+              <!-- Forward Arrows -->
+              <line x1="139" y1="52" x2="184" y2="52" stroke="#b42d22" stroke-width="1.5" marker-end="url(#arr-red)" />
+              <line x1="314" y1="52" x2="358" y2="52" stroke="#b42d22" stroke-width="1.5" marker-end="url(#arr-red)" />
+
+              <!-- Infinite Rerun Loop Feedback -->
+              <path d="M 423 86 L 423 138 L 250 138 L 250 88" fill="none" stroke="#b42d22" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-red)" />
+              <path d="M 250 138 L 76 138 L 76 88" fill="none" stroke="#b42d22" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-red)" />
+
+              <rect x="108" y="122" width="284" height="28" rx="4" fill="#fbe5e3" stroke="#ebaba5" />
+              <text x="250" y="140" text-anchor="middle" font-size="10" font-family="IBM Plex Mono, monospace" fill="#b42d22">
+                INFINITE LOOP: 0.001% float / $0.01 rounding diff → Rerun!
+              </text>
+              <text x="250" y="170" text-anchor="middle" font-size="10" font-family="IBM Plex Mono, monospace" fill="#8d9b95">
+                Full Chat History Passed Every Turn (43k → 238k tokens/turn)
+              </text>
+            </svg>
+          </div>
+
+          <ul class="arch-points">
+            <li><strong>No "Good Enough" Threshold:</strong> When the Review Agent recomputed metrics using a slightly different float reduction order or fee rounding (`$0.01` difference on a single trade row), it flagged a mismatch and forced the Backtest Agent to re-run from scratch.</li>
+            <li><strong>Quadratic Context Bloat:</strong> Agents passed entire raw conversation histories and multi-page stdout logs across sessions (`43,493` tokens on turn 1 growing to `237,930` tokens by turn 8 in client logs).</li>
+            <li><strong>Zero Fault Isolation:</strong> A single missing ticker date or unverified data column blocked the entire chain while agents debated how to patch policy on the fly.</li>
+          </ul>
+        </div>
+
+        <!-- AFTER PANEL -->
+        <div class="arch-panel after">
+          <div class="arch-header">
+            <h3>After: 1 Leader + Parallel Workers + Tolerance Gate</h3>
+            <span class="pill pill-win">Current Production Workflow</span>
+          </div>
+
+          <div class="diagram-box" aria-label="After Architecture Diagram">
+            <svg viewBox="0 0 500 185" style="width:100%;height:auto;display:block" role="img">
+              <defs>
+                <marker id="arr-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#196f43" />
+                </marker>
+              </defs>
+              <!-- Leader Node -->
+              <rect x="12" y="42" width="118" height="76" rx="6" fill="none" stroke="#196f43" stroke-width="1.6" />
+              <text x="71" y="64" text-anchor="middle" font-size="11.5" font-weight="700" fill="currentColor">1 Leader Agent</text>
+              <text x="71" y="81" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#8d9b95">leader.py / brief.py</text>
+              <text x="71" y="96" text-anchor="middle" font-size="9" font-family="IBM Plex Mono, monospace" fill="#196f43">≤4.5KB Task Contract</text>
+              <text x="71" y="109" text-anchor="middle" font-size="9" font-family="IBM Plex Mono, monospace" fill="#196f43">+ P1/N1 Fixtures</text>
+
+              <!-- Parallel Workers -->
+              <rect x="166" y="16" width="142" height="36" rx="5" fill="none" stroke="#196f43" stroke-width="1.3" />
+              <text x="237" y="38" text-anchor="middle" font-size="10.5" font-family="IBM Plex Mono, monospace" fill="currentColor">Worker C1 (Ops/Kit)</text>
+
+              <rect x="166" y="62" width="142" height="36" rx="5" fill="none" stroke="#196f43" stroke-width="1.3" />
+              <text x="237" y="84" text-anchor="middle" font-size="10.5" font-family="IBM Plex Mono, monospace" fill="currentColor">Worker C2 (Research)</text>
+
+              <rect x="166" y="108" width="142" height="36" rx="5" fill="none" stroke="#196f43" stroke-width="1.3" />
+              <text x="237" y="130" text-anchor="middle" font-size="10.5" font-family="IBM Plex Mono, monospace" fill="currentColor">Workers G1–G5 (Verify)</text>
+
+              <!-- Tolerance & Handoff Gate -->
+              <rect x="344" y="26" width="144" height="108" rx="6" fill="#e1f3e9" stroke="#a3d9bc" stroke-width="1.5" />
+              <text x="416" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#196f43">Tolerance &amp; Handoff</text>
+              <text x="416" y="64" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#196f43">Metric tol: ±0.05 pp</text>
+              <text x="416" y="79" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#196f43">Cost diff ≤$0.01: Log</text>
+              <text x="416" y="94" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#196f43">Float: rtol=1e-9</text>
+              <text x="416" y="112" text-anchor="middle" font-size="9.5" font-weight="600" font-family="IBM Plex Mono, monospace" fill="#196f43">DONE.md (≤150 chars)</text>
+              <text x="416" y="125" text-anchor="middle" font-size="9" font-family="IBM Plex Mono, monospace" fill="#196f43">+ DONE.meta.json</text>
+
+              <!-- Arrows -->
+              <line x1="130" y1="62" x2="164" y2="34" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
+              <line x1="130" y1="80" x2="164" y2="80" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
+              <line x1="130" y1="98" x2="164" y2="126" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
+
+              <line x1="308" y1="34" x2="342" y2="60" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
+              <line x1="308" y1="80" x2="342" y2="80" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
+              <line x1="308" y1="126" x2="342" y2="100" stroke="#196f43" stroke-width="1.4" marker-end="url(#arr-green)" />
+
+              <!-- Summary Handoff Back to Leader -->
+              <path d="M 416 134 L 416 164 L 71 164 L 71 120" fill="none" stroke="#196f43" stroke-width="1.5" marker-end="url(#arr-green)" />
+              <text x="245" y="177" text-anchor="middle" font-size="10" font-family="IBM Plex Mono, monospace" fill="#196f43">
+                Delta Packet Only (2,329 chars vs 8,551 chars = -72.8% context read)
+              </text>
+            </svg>
+          </div>
+
+          <ul class="arch-points">
+            <li><strong>1 Leader + Parallel Slot Queues:</strong> The Leader Agent (`leader.py`) writes self-contained task contracts (`≤4,500B`) with pre-computed positive/negative test fixtures (`g5-pos.json` / `g5-neg.json`). Workers claim tasks atomically from isolated queues without touching each other's directories.</li>
+            <li><strong>Explicit Error Tolerances (`Decision 39`):</strong> Metric reproduction within `±0.05 pp`, single-row fee rounding `≤$0.01` (`≤$0.05` batch), and float arrays within `rtol=1e-9, atol=1e-12` pass automatically—minor diffs below threshold are logged as notes, never re-run.</li>
+            <li><strong>Short Summary Handoffs (`handoff_meta.py`):</strong> Workers output a strict 5-field `DONE.md` (`≤150` char conclusion + single literal re-check command) and an automated `DONE.meta.json` sidecar. The Leader reads compact `brief.py` delta packets (`≤4,000` chars) and rotates sessions every 3–5 turns.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MODULE 3: UNDER THE HOOD (REAL ENGINEERING ARTIFACTS) -->
+    <section id="under-the-hood" aria-labelledby="hood-heading">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Section 03 · Real Desensitized Engineering Slices</div>
+        <h2 id="hood-heading" class="sec-title">Under the Hood: Contracts, Tolerance Gates &amp; Execution Logs</h2>
+        <p class="sec-desc">
+          Three real, desensitized artifacts extracted directly from the `strategy-vault` production directory (translated from our internal specification into English with local paths normalized).
+        </p>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="tabs-header" role="tablist">
+        <button type="button" class="tab-btn active" data-tab="tab-handoff" role="tab">
+          <span>Artifact 01: Task Contract &amp; Summary Handoff</span>
+          <span class="tab-code">DONE.md + DONE.meta.json</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="tab-tolerance" role="tab">
+          <span>Artifact 02: Explicit Error Tolerance Gate</span>
+          <span class="tab-code">Decision 39 + scoring_gate.py</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="tab-execution" role="tab">
+          <span>Artifact 03: Single-Task Execution &amp; Audit Log</span>
+          <span class="tab-code">Task 20261107-1024-02</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: TASK CONTRACT & HANDOFF SIDECAR -->
+      <div id="tab-handoff" class="tab-panel active" role="tabpanel">
+        <div class="artifact-split">
+          <div>
+            <h3 style="margin-top:0;font-size:17px">How Cross-Session Memory Handoffs Work</h3>
+            <p style="font-size:13.8px;color:var(--fg-secondary)">
+              Instead of feeding a 200k-token chat transcript into the next agent session, every Worker session terminates by writing a <strong>5-field `DONE.md` card</strong> (`Result`, `One-Line Conclusion ≤150 chars`, `Output Files`, `Single Re-Check Command`, `Blocker/Next`).
+            </p>
+            <p style="font-size:13.8px;color:var(--fg-secondary)">
+              When `board.py --finish` runs, `handoff_meta.py` scans file modification timestamps inside the claim window, verifies that no protected files (`SESSION-RULES.md`, `STRATEGY-REGISTRY.md`, `_leader/`) were touched, executes the single re-check command, and emits `DONE.meta.json`.
+            </p>
+            <div class="code-window" style="margin-top:14px">
+              <div class="code-bar">
+                <span>_collab/claims/20261107-1024-02/DONE.md (5-Field Worker Card)</span>
+                <span>UTF-8 · 5 Fields</span>
+              </div>
+              <pre><span class="hl-com"># Worker 5-Field Summary Card (Translated from Chinese original)</span>
+<span class="hl-key">- Result:</span> Completed
+<span class="hl-key">- Conclusion (≤150 chars):</span> 1997-2011 dev screen (fit=0): at 15bp S1 CAGR 7.91% /
+  MaxDD -58.08% eliminated (&gt;55% gate); S2 CAGR 2.52% trailed CASH (2.84%).
+<span class="hl-key">- Output Files:</span> 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/
+  [run_study.py, check.py, study.json, summary_metrics.csv, results/trials.csv,
+   REPORT.md, DELIVERY.json, fit_ledger.json, prefix_invariance.json]
+<span class="hl-key">- Re-Check Command:</span> python3 -B .../check.py -&gt;
+  <span class="hl-pass">CHECK_OK paths=21 files=15 run_lines=343 check_lines=270 fit_count=0</span>
+<span class="hl-key">- Next / Blocker:</span> Blocker: None. 2:1 short-QLD/long-2xNDX variance-drain harvest
+  trailed Rule B and CASH after borrow &amp; turnover costs; do not advance to holdout.</pre>
+            </div>
+          </div>
+
+          <div class="code-window">
+            <div class="code-bar">
+              <span>_collab/claims/20261107-1024-02/DONE.meta.json (Machine Sidecar)</span>
+              <span>schema: handoff-meta-1</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"schema_version"</span>: <span class="hl-str">"handoff-meta-1"</span>,
+  <span class="hl-key">"task_id"</span>: <span class="hl-str">"20261107-1024-02"</span>,
+  <span class="hl-key">"session"</span>: <span class="hl-str">"G5-1107d"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-str">"SUCCESS"</span>,
+  <span class="hl-key">"acceptance"</span>: <span class="hl-str">"PENDING_LEADER_AUDIT"</span>,
+  <span class="hl-key">"exit_code"</span>: <span class="hl-num">0</span>,
+  <span class="hl-key">"exit_code_source"</span>: <span class="hl-str">"board_measured"</span>,
+  <span class="hl-key">"recheck_elapsed_s"</span>: <span class="hl-num">4.028523</span>,
+  <span class="hl-key">"recheck_last_line"</span>: <span class="hl-str">"CHECK_OK paths=21 files=15 run_lines=343 check_lines=270 fit_count=0"</span>,
+  <span class="hl-key">"output_dir_sha_before"</span>: <span class="hl-str">"93570e13cc90380dd42d50d81a166a56296c9ce3dcda690c11dfb161b6e0c1ba"</span>,
+  <span class="hl-key">"output_dir_sha_after"</span>: <span class="hl-str">"93570e13cc90380dd42d50d81a166a56296c9ce3dcda690c11dfb161b6e0c1ba"</span>,
+  <span class="hl-key">"summary"</span>: <span class="hl-str">"1997-2011 dev screen (fit=0): at 15bp S1 CAGR 7.91% / MaxDD -58.08% eliminated; S2 2.52% &lt; CASH 2.84%."</span>,
+  <span class="hl-key">"summary_truncated"</span>: <span class="hl-num">false</span>,
+  <span class="hl-key">"summary_max_chars"</span>: <span class="hl-num">150</span>,
+  <span class="hl-key">"protected_paths_modified"</span>: [],
+  <span class="hl-key">"anomalies"</span>: []
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: EXPLICIT ERROR TOLERANCE GATE -->
+      <div id="tab-tolerance" class="tab-panel" role="tabpanel">
+        <div class="artifact-split">
+          <div>
+            <h3 style="margin-top:0;font-size:17px">Stopping Rerun Loops via Explicit Error Tolerances</h3>
+            <p style="font-size:13.8px;color:var(--fg-secondary)">
+              In `Decision 39` and `scoring_gate.py`, we codified exact numerical tolerances for every check layer. If an independent verification run lands inside the tolerance band and preserves trade direction, constituent rankings, and gate verdicts, the discrepancy is <strong>logged as a non-blocking audit note</strong> and the task is closed immediately.
+            </p>
+            <ul class="arch-points" style="margin-top:10px">
+              <li><strong>Account Metrics (`G3` Gate):</strong> `±0.05` percentage points (`0.0005`) on annualized CAGR, Daily MaxDD, and Calmar ratio.</li>
+              <li><strong>Reference Cost &amp; Fee Rounding:</strong> Single-row rounding diff `≤ $0.01` and batch sum diff `≤ $0.05` are logged and halted—never re-run.</li>
+              <li><strong>Float Array &amp; Prefix Invariance:</strong> `rtol = 1e-9, atol = 1e-12` on daily return arrays; `≤ 1e-12` max difference on pre-cutoff NAVs when future data is perturbed.</li>
+              <li><strong>Model Fitting Budget (`fit_counter.py`):</strong> Hooks `numpy.linalg.lstsq/solve` and model `.fit()` entry points so a study cannot silently run 50 regressions while claiming a single test.</li>
+            </ul>
+          </div>
+
+          <div class="code-window">
+            <div class="code-bar">
+              <span>_leader/scoring_gate.py &amp; _collab/fit_counter.py (Tolerance &amp; Fit Gate Excerpt)</span>
+              <span>Python 3.12 · Stdlib Only</span>
+            </div>
+            <pre><span class="hl-com"># 1. Explicit Error Tolerance Constants (Decision 39 &amp; Gate G3)</span>
+METRIC_TOLERANCE_PP = <span class="hl-num">0.05</span>          <span class="hl-com"># ±0.05 percentage points on CAGR / MaxDD / Calmar</span>
+COST_ROW_ROUNDING_TOL_USD = <span class="hl-num">0.01</span>    <span class="hl-com"># ≤$0.01 single-row rounding: log note, do NOT rerun</span>
+COST_BATCH_ROUNDING_TOL_USD = <span class="hl-num">0.05</span>  <span class="hl-com"># ≤$0.05 full-batch sum diff: log note, do NOT rerun</span>
+ARRAY_RTOL = <span class="hl-num">1e-9</span>                   <span class="hl-com"># Relative float tolerance for daily return series</span>
+ARRAY_ATOL = <span class="hl-num">1e-12</span>                  <span class="hl-com"># Absolute float tolerance &amp; prefix invariance bound</span>
+
+<span class="hl-key">def</span> verify_metric_within_tolerance(expected_pp: float, actual_pp: float,
+                                   direction_changed: bool) -&gt; dict:
+    diff_pp = abs(actual_pp - expected_pp)
+    <span class="hl-key">if</span> direction_changed:
+        <span class="hl-key">return</span> {<span class="hl-str">"status"</span>: <span class="hl-str">"REJECT_RERUN"</span>, <span class="hl-str">"reason"</span>: <span class="hl-str">"signal_or_verdict_flipped"</span>}
+    <span class="hl-key">if</span> diff_pp &lt;= METRIC_TOLERANCE_PP:
+        <span class="hl-key">return</span> {
+            <span class="hl-str">"status"</span>: <span class="hl-str">"PASS_LOG_ONLY"</span>,  <span class="hl-com"># Halts infinite review loop</span>
+            <span class="hl-str">"abs_diff_pp"</span>: round(diff_pp, <span class="hl-num">8</span>),
+            <span class="hl-str">"action"</span>: <span class="hl-str">"record_audit_note_no_rerun"</span>
+        }
+    <span class="hl-key">return</span> {<span class="hl-str">"status"</span>: <span class="hl-str">"FAIL_G3_GATE"</span>, <span class="hl-str">"abs_diff_pp"</span>: round(diff_pp, <span class="hl-num">8</span>)}
+
+<span class="hl-com"># 2. Pre-Dispatch Positive &amp; Negative Fixture Gate (Contract P1 / N1)</span>
+<span class="hl-com"># P1 (g5-pos.json): Clean anchor input must exit rc=0 and match within rtol=1e-9</span>
+<span class="hl-com"># N1 (g5-neg.json): Deliberate lookahead (signal_lag_days=0) must be rejected with rc=2</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: SINGLE-TASK EXECUTION & VERIFICATION TRACE -->
+      <div id="tab-execution" class="tab-panel" role="tabpanel">
+        <div class="artifact-split">
+          <div>
+            <h3 style="margin-top:0;font-size:17px">Single-Task Execution &amp; Portable Verification Log</h3>
+            <p style="font-size:13.8px;color:var(--fg-secondary)">
+              Every study card defines a <strong>Positive Fixture (`P1`)</strong>, a <strong>Negative Deliberate-Fault Fixture (`N1`)</strong>, a <strong>Historical Anchor &amp; Prefix Invariance Test (`P2`)</strong>, and an <strong>Independent Full Re-Check (`P3`)</strong>.
+            </p>
+            <p style="font-size:13.8px;color:var(--fg-secondary)">
+              Why require a Negative Fixture (`N1`)? Early on, a Worker Agent accidentally wrote a `check.py` script that imported the production script's summary variables and always printed `PASS`. Requiring `check.py --fixture g5-neg.json` to exit with `rc=2` on an injected lookahead error (`signal_lag_days=0`) guarantees the checker actually validates the math.
+            </p>
+          </div>
+
+          <div class="code-window">
+            <div class="code-bar">
+              <span>03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/REPORT.md (Execution Trace)</span>
+              <span>rc=0 / rc=2 Verified</span>
+            </div>
+            <pre><span class="hl-com"># Stage Timing Trace (UTC 2026-11-07)</span>
+[11:25:27Z..11:25:28Z] Read &amp; SHA-256 Source Audit : <span class="hl-num">0.033s</span> (qld_panel + cash_daily verified)
+[11:25:28Z..11:25:35Z] Main Simulation (21 paths)  : <span class="hl-num">7.125s</span> (3,776 eval days, 20,000 boot)
+[11:25:35Z..11:25:39Z] Independent Check &amp; Seal    : <span class="hl-num">4.028s</span> (OS_TMP -&gt; atomic copy &amp; freeze)
+
+<span class="hl-com"># Criterion P1: Positive Fixture Check (Expected rc=0)</span>
+$ python3 -B check.py --fixture _leader/fixtures/dispatch-GM1002/g5-pos.json
+-&gt; <span class="hl-pass">{"ok": true, "rc": 0, "detail": {"fixture_id": "g5-pos", "gate_vd": 1,
+    "h_target": 0.25, "spread_gross": -0.01849734391207336, "reasons": []}}</span>
+
+<span class="hl-com"># Criterion N1: Negative Fault-Injection Check (Expected rc=2)</span>
+$ python3 -B check.py --fixture _leader/fixtures/dispatch-GM1002/g5-neg.json
+-&gt; <span class="hl-fail">{"ok": false, "rc": 2, "detail": {"fixture_id": "g5-neg", "gate_vd": 0,
+    "reasons": ["signal_lag_days=0&lt;1", "candidate_h=0.5!=h_target=0.0",
+                "violation:same_bar_execution_and_low_vol_oversized_hedge"]}}</span>
+
+<span class="hl-com"># Criterion P2: 2008-10-15 Crisis Anchor &amp; Prefix Invariance (cut=2004-06-30)</span>
+-&gt; 2008-10-15: r_u=-0.090524899658, r_qld=-0.162721899849, rv20_ann=0.757536640544
+-&gt; Perturbing post-2004-06-30 prices with non-constant sine/cosine wave:
+   max_overall_diff on 1997-01-02..2004-06-30 (1,886 days) = <span class="hl-pass">0.0 (&lt;= 1e-12)</span>
+
+<span class="hl-com"># Criterion P3: Full Independent Re-Computation</span>
+$ python3 -B 03-research/QLD/2026-11-07-qld-ndx-vardrain-arb-dev/check.py
+-&gt; <span class="hl-pass">CHECK_OK paths=21 files=15 run_lines=343 check_lines=270 fit_count=0 (rc=0)</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 4: SAMPLE BACKTESTS & THE OVERFITTING PUZZLE -->
+    <section id="overfitting-puzzle" aria-labelledby="overfitting-heading">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Section 04 · Empirical Reality &amp; Statistical Discipline</div>
+        <h2 id="overfitting-heading" class="sec-title">Sample Backtests &amp; The Overfitting Puzzle</h2>
+        <p class="sec-desc">
+          Why we refuse to claim "market-beating alpha": in quantitative equity research, it is easy to find rules that look extraordinary in a single 15-year window. The real engineering problem is building statistical gates that catch regime-specific overfitting when results conflict across time windows.
+        </p>
+      </div>
+
+      <!-- Two Real Case Studies Side-by-Side -->
+      <div class="case-grid">
+
+        <!-- CASE STUDY 1 -->
+        <article class="case-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <span class="proj-badge badge-active">Case Study 01 · Cross-Window Reversal</span>
+            <span class="pill pill-flat">Final Verdict: Rejected (No Edge)</span>
+          </div>
+          <h3>S&amp;P 500 Downside-Beta Penalized Momentum (`2026-10-20`)</h3>
+          <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px">
+            <strong>Hypothesis:</strong> Rank S&amp;P 500 constituents over 126 trading days by penalizing downside beta (`Score = R_126 / (1 + max(beta_down, 0))`, top 5 stocks, ≤2 per SIC industry, 6 staggered tranches, 15 bps cost). Screened by Agent `G3-1019a`; verified on holdout by isolated Agent `G2-1020g`.
+          </p>
+
+          <div class="mini-table-wrap">
+            <table class="mini-table">
+              <thead>
+                <tr>
+                  <th>Time Window</th>
+                  <th class="num">Base CAGR</th>
+                  <th class="num">Cand CAGR</th>
+                  <th class="num">Cand MaxDD</th>
+                  <th class="num">Calmar</th>
+                  <th>Window Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Dev (1997–2011)</strong></td>
+                  <td class="num">8.89%</td>
+                  <td class="num" style="color:var(--win);font-weight:600">9.85%</td>
+                  <td class="num">-44.34%</td>
+                  <td class="num">0.222</td>
+                  <td><span class="pill pill-win">PASS Path B (+18% Calmar)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Pre-Sample M1 (1934–85)</strong></td>
+                  <td class="num">15.07%</td>
+                  <td class="num" style="color:var(--win);font-weight:600">16.36%</td>
+                  <td class="num">-66.48%</td>
+                  <td class="num">0.246</td>
+                  <td><span class="pill pill-win">PASS Directional</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Holdout (2012–2025)</strong></td>
+                  <td class="num">17.74%</td>
+                  <td class="num" style="color:var(--lose);font-weight:600">15.59%</td>
+                  <td class="num">-29.16%</td>
+                  <td class="num">0.535</td>
+                  <td><span class="pill pill-lose">FAIL (p = 0.0000)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Sub-Window (2019–2025)</strong></td>
+                  <td class="num">23.23%</td>
+                  <td class="num" style="color:var(--lose);font-weight:600">13.43%</td>
+                  <td class="num">-32.82%</td>
+                  <td class="num">0.409</td>
+                  <td><span class="pill pill-lose">FAIL (-9.80pp/yr Lag)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="font-size:13px;color:var(--muted);margin:0">
+            <strong>What We Learned:</strong> Downside-beta penalization cushioned the 2000–2002 dot-com bust and 2008 GFC in the `1997–2011` development set, but systematically filtered out high-beta semiconductor and mega-cap growth leaders during the `2012–2025` expansion. Without strict out-of-sample holdout &amp; sub-window consistency gates, this rule would have been mistakenly deployed.
+          </p>
+        </article>
+
+        <!-- CASE STUDY 2 -->
+        <article class="case-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <span class="proj-badge badge-active">Case Study 02 · Secular Crash Stress Gate</span>
+            <span class="pill pill-lose">Final Verdict: Eliminated (M1 DD &gt; 55%)</span>
+          </div>
+          <h3>Sleeve Ratio `V2 40/40/10/10` (`2026-10-15`) &amp; Variance-Drain (`2026-11-07`)</h3>
+          <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px">
+            <strong>Hypothesis:</strong> Shift account sleeve weights from `30% Risk / 20% QLD / 40% Core / 10% Cash` to `40% Risk / 40% QLD / 10% Core / 10% Cash` (`V2`), and separately test a `fit=0` 2:1 short-QLD / long-2xNDX variance-drain overlay during high volatility (`RV20 >= 0.28`).
+          </p>
+
+          <div class="mini-table-wrap">
+            <table class="mini-table">
+              <thead>
+                <tr>
+                  <th>Study &amp; Window</th>
+                  <th class="num">Base CAGR</th>
+                  <th class="num">Cand CAGR</th>
+                  <th class="num">Cand MaxDD</th>
+                  <th class="num">Calmar</th>
+                  <th>Gate Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>V2 · Dev (1997–2011)</strong></td>
+                  <td class="num">8.18%</td>
+                  <td class="num" style="color:var(--win);font-weight:600">9.33%</td>
+                  <td class="num">-45.44%</td>
+                  <td class="num">0.205</td>
+                  <td><span class="pill pill-win">PASS Path A</span></td>
+                </tr>
+                <tr>
+                  <td><strong>V2 · Holdout (2012–2026)</strong></td>
+                  <td class="num">21.30%</td>
+                  <td class="num" style="color:var(--win);font-weight:600">24.96%</td>
+                  <td class="num">-24.86%</td>
+                  <td class="num">1.004</td>
+                  <td><span class="pill pill-info">+3.66pp (Boot p=0.62 &lt; 0.70)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>V2 · M1 Stress (1934–85)</strong></td>
+                  <td class="num">6.67%</td>
+                  <td class="num">7.67%</td>
+                  <td class="num" style="color:var(--lose);font-weight:600">-57.04%</td>
+                  <td class="num">0.135</td>
+                  <td><span class="pill pill-lose">ELIMINATED (MaxDD &gt; 55%)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>VarDrain S2 · Dev (fit=0)</strong></td>
+                  <td class="num">2.84% (Cash)</td>
+                  <td class="num" style="color:var(--lose);font-weight:600">2.52%</td>
+                  <td class="num">-1.53%</td>
+                  <td class="num">1.647</td>
+                  <td><span class="pill pill-flat">FAIL (Trailed Cash by -0.33pp)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="font-size:13px;color:var(--muted);margin:0">
+            <strong>What We Learned:</strong> Even when a candidate (`V2 40/40/10/10`) beats the baseline in both `1997–2011` and `2012–2026` (+3.66 pp/yr out-of-sample), our 252-day block bootstrap (`p = 0.620 < 0.70`) and `1934–1985` M1 crash gate (`-57.04%` drawdown during 1937–1942) caught that the gain came from tail-risk leverage rather than robust alpha.
+          </p>
+        </article>
+
+      </div>
+
+      <!-- The 6-Gate Overfitting Defense Funnel -->
+      <div class="funnel-box">
+        <h3 style="margin:0 0 4px;font-size:16.5px">How Our Multi-Agent Workflow Separates Signal from Overfitting (The 6-Gate Funnel)</h3>
+        <p style="margin:0;font-size:13.5px;color:var(--muted)">
+          Every research card in `strategy-vault` is scored on execution rigor (`G1–G6`), never on whether the backtest return is positive (`SESSION-RULES 3b`). Negative results earn full credit so agents have zero incentive to p-hack.
+        </p>
+        <div class="funnel-grid">
+          <div class="funnel-step">
+            <b>1. Pre-Registration &amp; Fit Cap (`fit_counter.py`)</b>
+            <span>`study.json` SHA-256 is locked before running numbers. `fit_counter.py` enforces `fit_count &lt;= N` (often `fit=0`) at runtime.</span>
+          </div>
+          <div class="funnel-step">
+            <b>2. Strict 3-Regime Isolation</b>
+            <span>Development screening (`1997–2011`, max 3 variants) is physically truncated from Out-of-Sample Holdout (`2012–2026`) and Pre-Sample `M1 (1934–1985)`.</span>
+          </div>
+          <div class="funnel-step">
+            <b>3. Crash-Year &amp; Exposure-Matched Ablation</b>
+            <span>Defensive timing rules must beat an equal-average-exposure baseline (`k * B + (1-k) * Cash`) even after removing `2000–02` and `2008`.</span>
+          </div>
+          <div class="funnel-step">
+            <b>4. Friction, Borrow &amp; `delay1` Lag Stress</b>
+            <span>All candidates are tested at `15 bps` and `30 bps` (2x cost), `100 bps/yr` short borrow fees, and next-open (`delay1`) signal execution.</span>
+          </div>
+          <div class="funnel-step">
+            <b>5. Holdout Wear Penalty (`p &gt;= 1 - 0.30/N`)</b>
+            <span>Each formal holdout test increments $N$ (`Decision 53`). At $N=5$, block-bootstrap win probability must reach `p &gt;= 0.94` to prevent multiple-testing decay.</span>
+          </div>
+          <div class="funnel-step">
+            <b>6. 12-Month Forward Shadow Ledger (`shadow.py`)</b>
+            <span>Candidates passing statistical gates must run side-by-side in our daily paper-trading shadow ledger for 12 months before replacing baseline rules.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Trial Ledger Explorer -->
+      <div class="explorer-card">
+        <div class="explorer-top">
+          <div>
+            <h3 style="margin:0 0 6px;font-size:17px">Interactive Trial Ledger (`results/trials.csv` Sample)</h3>
+            <p style="font-size:13.5px;color:var(--fg-secondary);margin:0 0 10px">
+              Every variant tested by any Worker Agent—including failed screens and eliminated hypotheses—is logged to `results/trials.csv`. Filter or sort the 30 representative runs below to inspect how the gates reject false positives:
+            </p>
+            <ul style="margin:0;padding-left:18px;font-size:12.5px;color:var(--muted)">
+              <li><strong>Different windows cannot be naively compared:</strong> `1997–2011` includes two secular crashes (2000–02, 2008); `2012–2026` is a secular bull market; `M1 1934–1985` tests pre-sample regime survival.</li>
+              <li><strong>Red dashed line (`-50%` MaxDD):</strong> Hard qualification threshold (`目标函数.md`). Any candidate exceeding `-55%` is automatically eliminated.</li>
+              <li><strong>Click any column header</strong> in the table below to sort by CAGR, Daily MaxDD, Calmar, or Study Date.</li>
+            </ul>
+          </div>
+
+          <div class="scatter-wrap">
+            <div class="scatter-title">
+              <span>CAGR (%) vs. Daily Max Drawdown (%)</span>
+              <span>Hover points for study details</span>
+            </div>
+            <svg id="scatter-svg" viewBox="0 0 560 260" style="width:100%;height:auto;display:block" role="img" aria-label="Scatter plot of CAGR vs Daily Maximum Drawdown"></svg>
+          </div>
+        </div>
+
+        <div class="controls-bar">
+          <select id="filter-fam" aria-label="Filter by Strategy Family"></select>
+          <select id="filter-stg" aria-label="Filter by Testing Stage">
+            <option value="">All Stages</option>
+            <option value="Formal (Holdout)">Formal (Holdout 2012+)</option>
+            <option value="Formal (Pre-Sample M1)">Formal (Pre-Sample M1 1934–85)</option>
+            <option value="Screening">Screening (Dev 1997–2011)</option>
+            <option value="Baseline">Baseline Control</option>
+          </select>
+          <select id="filter-ver" aria-label="Filter by Verdict">
+            <option value="">All Verdicts</option>
+            <option value="win">Window Pass (Path A / B)</option>
+            <option value="flat">Rejected: No Edge / Reversal</option>
+            <option value="lose">Eliminated (MaxDD Gate Breach)</option>
+            <option value="info">Baseline / Diagnostic</option>
+          </select>
+          <input id="filter-q" type="search" placeholder="Search study name, rule variant, or failure reason..." aria-label="Search trials" />
+          <span id="ledger-count" class="count-badge"></span>
+        </div>
+
+        <div class="ledger-table-wrap">
+          <table class="ledger-table">
+            <thead>
+              <tr>
+                <th data-sort="date">Date ↕</th>
+                <th data-sort="study">Study / Family ↕</th>
+                <th data-sort="variant">Rule Variant &amp; Engineering Diagnosis</th>
+                <th data-sort="stage">Stage ↕</th>
+                <th data-sort="window">Evaluation Window</th>
+                <th data-sort="cagr" class="num">CAGR % ↕</th>
+                <th data-sort="maxdd" class="num">Daily MaxDD % ↕</th>
+                <th data-sort="calmar" class="num">Calmar ↕</th>
+                <th data-sort="verdict">Gate Verdict ↕</th>
+              </tr>
+            </thead>
+            <tbody id="ledger-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div style="max-width:860px;margin:0 auto">
+      <strong>Jiarong Li — Independent Builder Portfolio &amp; `strategy-vault` Engineering Showcase</strong><br />
+      <span>All research artifacts and backtest metrics on this page are desensitized engineering records for academic and portfolio demonstration only. Nothing on this site constitutes financial or investment advice.</span>
+    </div>
+  </footer>
+
+  <script src="assets/trials-data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
