@@ -1,8 +1,84 @@
 (function () {
-  // 1. Theme Toggle
-  const root = document.documentElement;
-  const themeBtn = document.getElementById("theme-toggle");
+  // Declare all shared state and DOM references at the top (avoid Temporal Dead Zone in dark mode)
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("theme-toggle");
+  var trials = window.TRIALS_DATA || [];
+  var famSelect = document.getElementById("filter-fam");
+  var stgSelect = document.getElementById("filter-stg");
+  var verSelect = document.getElementById("filter-ver");
+  var searchInput = document.getElementById("filter-q");
+  var countEl = document.getElementById("ledger-count");
+  var tbody = document.getElementById("ledger-tbody");
+  var svg = document.getElementById("scatter-svg");
+  var sortKey = "date";
+  var sortAsc = false;
+  var currentFiltered = trials.slice();
 
+  function pillClassFor(type) {
+    if (type === "win") return "pill-win";
+    if (type === "lose") return "pill-lose";
+    if (type === "info") return "pill-info";
+    return "pill-flat";
+  }
+
+  function renderScatter(rows) {
+    if (!svg || !rows) return;
+    var W = 560, H = 260;
+    var pad = { l: 46, r: 18, t: 16, b: 34 };
+    var pw = W - pad.l - pad.r;
+    var ph = H - pad.t - pad.b;
+
+    var minX = -70, maxX = 0;
+    var minY = 0, maxY = 28;
+
+    function xOf(dd) {
+      return pad.l + ((Math.max(minX, Math.min(maxX, dd)) - minX) / (maxX - minX)) * pw;
+    }
+    function yOf(cagr) {
+      return pad.t + (1 - (Math.max(minY, Math.min(maxY, cagr)) - minY) / (maxY - minY)) * ph;
+    }
+
+    var isDark = root.getAttribute("data-theme") === "dark";
+    var gridColor = isDark ? "#29332f" : "#d6ddd9";
+    var textColor = isDark ? "#8d9b95" : "#5d6964";
+    var gateColor = isDark ? "#f4897f" : "#b42d22";
+
+    var out = "";
+
+    [-60, -50, -40, -30, -20, -10, 0].forEach(function (xv) {
+      var x = xOf(xv);
+      out += '<line x1="' + x + '" y1="' + pad.t + '" x2="' + x + '" y2="' + (H - pad.b) + '" stroke="' + gridColor + '" stroke-dasharray="2,2" />';
+      out += '<text x="' + x + '" y="' + (H - 12) + '" text-anchor="middle" fill="' + textColor + '" font-size="10" font-family="IBM Plex Mono, monospace">' + xv + '%</text>';
+    });
+
+    [0, 7, 14, 21, 28].forEach(function (yv) {
+      var y = yOf(yv);
+      out += '<line x1="' + pad.l + '" y1="' + y + '" x2="' + (W - pad.r) + '" y2="' + y + '" stroke="' + gridColor + '" stroke-dasharray="2,2" />';
+      out += '<text x="' + (pad.l - 6) + '" y="' + (y + 3) + '" text-anchor="end" fill="' + textColor + '" font-size="10" font-family="IBM Plex Mono, monospace">' + yv + '%</text>';
+    });
+
+    var xGate50 = xOf(-50);
+    out += '<line x1="' + xGate50 + '" y1="' + pad.t + '" x2="' + xGate50 + '" y2="' + (H - pad.b) + '" stroke="' + gateColor + '" stroke-width="1.5" stroke-dasharray="4,3" />';
+    out += '<text x="' + (xGate50 + 5) + '" y="' + (pad.t + 11) + '" fill="' + gateColor + '" font-size="9.5" font-family="IBM Plex Mono, monospace">-50% DD Gate</text>';
+
+    rows.forEach(function (r) {
+      var cx = xOf(r.maxdd);
+      var cy = yOf(r.cagr);
+      var fill = isDark ? "#8d9b95" : "#6a736f";
+      if (r.verdictType === "win") fill = isDark ? "#68d69c" : "#196f43";
+      else if (r.verdictType === "lose") fill = isDark ? "#f4897f" : "#b42d22";
+      else if (r.verdictType === "info") fill = isDark ? "#85b2ef" : "#285185";
+
+      var radius = r.stage.indexOf("Formal") === 0 ? 5.5 : 4.2;
+      var stroke = r.stage.indexOf("Formal") === 0 ? (isDark ? "#ffffff" : "#141917") : "none";
+      out += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + radius + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="1.2" opacity="0.9">' +
+        '<title>' + r.study + ' (' + r.variant + ')\nWindow: ' + r.window + '\nCAGR: ' + r.cagr.toFixed(2) + '% | MaxDD: ' + r.maxdd.toFixed(2) + '% | Calmar: ' + r.calmar.toFixed(3) + '\nVerdict: ' + r.verdict + '</title></circle>';
+    });
+
+    svg.innerHTML = out;
+  }
+
+  // 1. Theme Toggle
   function setTheme(theme) {
     if (theme === "dark") {
       root.setAttribute("data-theme", "dark");
@@ -17,29 +93,28 @@
     renderScatter(currentFiltered);
   }
 
-  const savedTheme = (() => {
-    try {
-      return localStorage.getItem("sv_theme");
-    } catch (e) {
-      return null;
-    }
-  })();
+  var savedTheme = null;
+  try {
+    savedTheme = localStorage.getItem("sv_theme");
+  } catch (e) {}
 
   if (savedTheme) {
     setTheme(savedTheme);
   } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     setTheme("dark");
+  } else {
+    setTheme("light");
   }
 
   if (themeBtn) {
-    themeBtn.addEventListener("click", () => {
-      const cur = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    themeBtn.addEventListener("click", function () {
+      var cur = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
       setTheme(cur);
     });
   }
 
   // 2. TariffDesk Interactive 3-Tier Confidence Demo
-  const tariffSamples = {
+  var tariffSamples = {
     auto: {
       sku: "SKU-1042: 100% Cotton Men's Knitted Crewneck T-Shirt (Origin: CN -> US)",
       tier: "AUTO-APPLY (Confidence: 0.96)",
@@ -69,11 +144,11 @@
     }
   };
 
-  const tariffBtns = document.querySelectorAll("[data-tariff-sample]");
-  const tariffBox = document.getElementById("tariff-demo-output");
+  var tariffBtns = document.querySelectorAll("[data-tariff-sample]");
+  var tariffBox = document.getElementById("tariff-demo-output");
 
   function renderTariffSample(key) {
-    const item = tariffSamples[key];
+    var item = tariffSamples[key];
     if (!item || !tariffBox) return;
     tariffBox.innerHTML =
       "<div><strong>Product:</strong> " + item.sku + "</div>" +
@@ -84,9 +159,11 @@
       "<div><strong>Landed Cost Result:</strong> " + item.landed + "</div>";
   }
 
-  tariffBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      tariffBtns.forEach((b) => b.classList.remove("active"));
+  Array.prototype.forEach.call(tariffBtns, function (btn) {
+    btn.addEventListener("click", function () {
+      Array.prototype.forEach.call(tariffBtns, function (b) {
+        b.classList.remove("active");
+      });
       btn.classList.add("active");
       renderTariffSample(btn.getAttribute("data-tariff-sample"));
     });
@@ -94,124 +171,52 @@
   renderTariffSample("auto");
 
   // 3. Under the Hood Tabs
-  const tabBtns = document.querySelectorAll(".tab-btn");
-  const tabPanels = document.querySelectorAll(".tab-panel");
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabPanels = document.querySelectorAll(".tab-panel");
 
-  tabBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const target = btn.getAttribute("data-tab");
-      tabBtns.forEach((b) => b.classList.remove("active"));
-      tabPanels.forEach((p) => p.classList.remove("active"));
+  Array.prototype.forEach.call(tabBtns, function (btn) {
+    btn.addEventListener("click", function () {
+      var target = btn.getAttribute("data-tab");
+      Array.prototype.forEach.call(tabBtns, function (b) {
+        b.classList.remove("active");
+      });
+      Array.prototype.forEach.call(tabPanels, function (p) {
+        p.classList.remove("active");
+      });
       btn.classList.add("active");
-      const panel = document.getElementById(target);
+      var panel = document.getElementById(target);
       if (panel) panel.classList.add("active");
     });
   });
 
   // 4. Interactive Trial Ledger & Scatter Plot
-  const trials = window.TRIALS_DATA || [];
-  const famSelect = document.getElementById("filter-fam");
-  const stgSelect = document.getElementById("filter-stg");
-  const verSelect = document.getElementById("filter-ver");
-  const searchInput = document.getElementById("filter-q");
-  const countEl = document.getElementById("ledger-count");
-  const tbody = document.getElementById("ledger-tbody");
-  const svg = document.getElementById("scatter-svg");
-
   if (famSelect) {
-    const families = Array.from(new Set(trials.map((d) => d.family))).sort();
+    var families = Array.from(new Set(trials.map(function (d) { return d.family; }))).sort();
     famSelect.innerHTML = '<option value="">All Families (' + families.length + ')</option>' +
-      families.map((f) => '<option value="' + f + '">' + f + '</option>').join("");
-  }
-
-  let sortKey = "date";
-  let sortAsc = false;
-  let currentFiltered = trials.slice();
-
-  function pillClassFor(type) {
-    if (type === "win") return "pill-win";
-    if (type === "lose") return "pill-lose";
-    if (type === "info") return "pill-info";
-    return "pill-flat";
-  }
-
-  function renderScatter(rows) {
-    if (!svg) return;
-    const W = 560, H = 260;
-    const pad = { l: 46, r: 18, t: 16, b: 34 };
-    const pw = W - pad.l - pad.r;
-    const ph = H - pad.t - pad.b;
-
-    const minX = -70, maxX = 0;
-    const minY = 0, maxY = 28;
-
-    const xOf = (dd) => pad.l + ((Math.max(minX, Math.min(maxX, dd)) - minX) / (maxX - minX)) * pw;
-    const yOf = (cagr) => pad.t + (1 - (Math.max(minY, Math.min(maxY, cagr)) - minY) / (maxY - minY)) * ph;
-
-    const isDark = root.getAttribute("data-theme") === "dark";
-    const gridColor = isDark ? "#29332f" : "#d6ddd9";
-    const textColor = isDark ? "#8d9b95" : "#5d6964";
-    const gateColor = isDark ? "#f4897f" : "#b42d22";
-
-    let out = "";
-
-    // Grid lines
-    [-60, -50, -40, -30, -20, -10, 0].forEach((xv) => {
-      const x = xOf(xv);
-      out += '<line x1="' + x + '" y1="' + pad.t + '" x2="' + x + '" y2="' + (H - pad.b) + '" stroke="' + gridColor + '" stroke-dasharray="2,2" />';
-      out += '<text x="' + x + '" y="' + (H - 12) + '" text-anchor="middle" fill="' + textColor + '" font-size="10" font-family="IBM Plex Mono, monospace">' + xv + '%</text>';
-    });
-
-    [0, 7, 14, 21, 28].forEach((yv) => {
-      const y = yOf(yv);
-      out += '<line x1="' + pad.l + '" y1="' + y + '" x2="' + (W - pad.r) + '" y2="' + y + '" stroke="' + gridColor + '" stroke-dasharray="2,2" />';
-      out += '<text x="' + (pad.l - 6) + '" y="' + (y + 3) + '" text-anchor="end" fill="' + textColor + '" font-size="10" font-family="IBM Plex Mono, monospace">' + yv + '%</text>';
-    });
-
-    // -50% Hard Drawdown Gate Line
-    const xGate50 = xOf(-50);
-    out += '<line x1="' + xGate50 + '" y1="' + pad.t + '" x2="' + xGate50 + '" y2="' + (H - pad.b) + '" stroke="' + gateColor + '" stroke-width="1.5" stroke-dasharray="4,3" />';
-    out += '<text x="' + (xGate50 + 5) + '" y="' + (pad.t + 11) + '" fill="' + gateColor + '" font-size="9.5" font-family="IBM Plex Mono, monospace">-50% DD Gate</text>';
-
-    // Points
-    rows.forEach((r) => {
-      const cx = xOf(r.maxdd);
-      const cy = yOf(r.cagr);
-      let fill = isDark ? "#8d9b95" : "#6a736f";
-      if (r.verdictType === "win") fill = isDark ? "#68d69c" : "#196f43";
-      else if (r.verdictType === "lose") fill = isDark ? "#f4897f" : "#b42d22";
-      else if (r.verdictType === "info") fill = isDark ? "#85b2ef" : "#285185";
-
-      const radius = r.stage.indexOf("Formal") === 0 ? 5.5 : 4.2;
-      const stroke = r.stage.indexOf("Formal") === 0 ? (isDark ? "#ffffff" : "#141917") : "none";
-      out += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + radius + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="1.2" opacity="0.9">' +
-        '<title>' + r.study + ' (' + r.variant + ')\nWindow: ' + r.window + '\nCAGR: ' + r.cagr.toFixed(2) + '% | MaxDD: ' + r.maxdd.toFixed(2) + '% | Calmar: ' + r.calmar.toFixed(3) + '\nVerdict: ' + r.verdict + '</title></circle>';
-    });
-
-    svg.innerHTML = out;
+      families.map(function (f) { return '<option value="' + f + '">' + f + '</option>'; }).join("");
   }
 
   function updateLedger() {
     if (!tbody) return;
-    const fam = famSelect ? famSelect.value : "";
-    const stg = stgSelect ? stgSelect.value : "";
-    const ver = verSelect ? verSelect.value : "";
-    const q = searchInput ? searchInput.value.trim().toLowerCase() : "";
+    var fam = famSelect ? famSelect.value : "";
+    var stg = stgSelect ? stgSelect.value : "";
+    var ver = verSelect ? verSelect.value : "";
+    var q = searchInput ? searchInput.value.trim().toLowerCase() : "";
 
-    currentFiltered = trials.filter((d) => {
+    currentFiltered = trials.filter(function (d) {
       if (fam && d.family !== fam) return false;
       if (stg && d.stage.indexOf(stg) === -1) return false;
       if (ver && d.verdictType !== ver) return false;
       if (q) {
-        const hay = (d.study + " " + d.variant + " " + d.window + " " + d.verdict + " " + d.note + " " + d.family).toLowerCase();
+        var hay = (d.study + " " + d.variant + " " + d.window + " " + d.verdict + " " + d.note + " " + d.family).toLowerCase();
         if (hay.indexOf(q) === -1) return false;
       }
       return true;
     });
 
-    currentFiltered.sort((a, b) => {
-      const va = a[sortKey];
-      const vb = b[sortKey];
+    currentFiltered.sort(function (a, b) {
+      var va = a[sortKey];
+      var vb = b[sortKey];
       if (typeof va === "number" && typeof vb === "number") {
         return sortAsc ? va - vb : vb - va;
       }
@@ -225,8 +230,8 @@
     }
 
     tbody.innerHTML = currentFiltered
-      .map((r) => {
-        const ddClass = r.maxdd < -50 ? "num dd-breach" : "num";
+      .map(function (r) {
+        var ddClass = r.maxdd < -50 ? "num dd-breach" : "num";
         return (
           "<tr>" +
           "<td style='font-family:var(--f-mono);font-size:12px;white-space:nowrap'>" + r.date + "</td>" +
@@ -246,14 +251,14 @@
     renderScatter(currentFiltered);
   }
 
-  [famSelect, stgSelect, verSelect].forEach((el) => {
+  [famSelect, stgSelect, verSelect].forEach(function (el) {
     if (el) el.addEventListener("change", updateLedger);
   });
   if (searchInput) searchInput.addEventListener("input", updateLedger);
 
-  document.querySelectorAll(".ledger-table th[data-sort]").forEach((th) => {
-    th.addEventListener("click", () => {
-      const k = th.getAttribute("data-sort");
+  Array.prototype.forEach.call(document.querySelectorAll(".ledger-table th[data-sort]"), function (th) {
+    th.addEventListener("click", function () {
+      var k = th.getAttribute("data-sort");
       if (sortKey === k) {
         sortAsc = !sortAsc;
       } else {
