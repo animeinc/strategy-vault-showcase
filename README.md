@@ -60,12 +60,12 @@ flowchart LR
 2. **Explicit Error Tolerances (`Decision 39`)**: Defined strict numerical tolerances for every verification check:
    - **Account-Level Metrics (`CAGR`, `Daily MaxDD`, `Calmar`)**: `±0.05` percentage points (`0.0005`).
    - **Reference Cost & Fee Rounding**: Single-row differences `≤ $0.01` and full-batch differences `≤ $0.05` are **logged as an audit note and halted**—never re-run—provided trade direction, constituent lists, and gate verdicts are unchanged.
-   - **Return Series & Prefix Invariance**: `rtol = 1e-9, atol = 1e-12` with automated lookahead perturbation checks (`cut = 2004-06-30`).
+   - **Return Series & Prefix Invariance** (task-card contracts; Decision 39 itself sets `1e-6` relative on metric floats): `rtol = 1e-9, atol = 1e-12` with automated lookahead perturbation checks (`cut = 2004-06-30`).
 3. **Short Summary Handoffs (`handoff_meta.py`)**: Replaced full-context chat transfers with a **5-field `DONE.md` card** (`≤ 150 chars` one-line conclusion + single literal re-check command) paired with an automated `DONE.meta.json` sidecar (`schema: handoff-meta-1`). On the Leader side, `brief.py` compiles a delta packet that reduced per-turn context character reads from **`8,551` chars to `2,329` chars (`-72.8%`)**, combined with a 3–5 turn session renewal cadence.
 
 ### Quantified Engineering Impact
-- **Research turnaround time reduced by ~50%**
-- **Token consumption reduced by ~70%**
+- **Per-turn leader context payload cut by ~73%** (`8,551` → `2,329` chars; character proxy, true token count not measured)
+- Research turnaround time: not yet measured
 
 ---
 
@@ -86,7 +86,7 @@ Rather than cherry-picking backtests or claiming a strategy that "beats the mark
 2. **Three-Regime Physical Isolation**: Development (`1997–2011`, max 3 variants) is string-truncated from Out-of-Sample Holdout (`2012–2026`) and Pre-Sample `M1 (1934–1985)`.
 3. **Crash-Year & Exposure-Matched Ablation (`k*B`)**: Candidates must still hold up when `2000–2002` and `2008` are removed against an equal-average-equity-exposure baseline.
 4. **Execution Friction & `delay1` Lag Stress**: Tested at `15 bps` and `30 bps` (2x cost), explicit short-borrow fees, and next-open (`delay1`) signal execution.
-5. **Holdout Wear Accounting (`Decision 53`)**: Every formal test on `2012–2026` increments $N$, raising the required 252-day block-bootstrap win probability via $p_{\text{threshold}}(N) = 1 - 0.30/N$ (at $N=5$, $p \ge 0.94$).
+5. **Holdout Wear Accounting (`Decision 53`)**: Every formal test on `2012–2026` increments $N$, raising the required 252-day block-bootstrap win probability via $p_{\text{threshold}}(N) = 1 - 0.30/N$ (six formal tests so far; next is $N=7$, $p \ge 0.957$).
 6. **12-Month Forward Shadow Ledger (`shadow.py`)**: Candidates passing statistical gates are paper-traded side-by-side for 12 months before rule adoption.
 
 ---
