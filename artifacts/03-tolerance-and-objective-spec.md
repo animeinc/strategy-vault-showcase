@@ -9,7 +9,8 @@ Before introducing explicit tolerances, multi-agent review sessions repeatedly r
 **Decision 39 & Gate G3 Tolerance Policy:**
 - **Strategy-Level Metrics (`CAGR`, `Daily MaxDD`, `Calmar`)**: Explicit tolerance of **`±0.05` percentage points (`0.0005`)** when reproduced by the Leader Agent on an isolated portable path (`inspect.py --run --portable`).
 - **Reference Transaction Cost & Ledger Rounding**: Single-row rounding differences **`<= $0.01`** and full-batch absolute sum differences **`<= $0.05`** are **logged as an audit note and halted** — agents are prohibited from opening rework tasks or re-running backtests if trade direction, constituent selection, integer share rounding, and gate verdicts remain unchanged.
-- **Deterministic Numerical Arrays & Prefix Invariance**: Verified via `numpy.isclose(..., rtol=1e-9, atol=1e-12)`. Future data perturbation past a cutoff date (`cut = 2004-06-30`) must yield **`max_abs_diff <= 1e-12`** on all pre-cutoff NAVs to guarantee zero lookahead leakage.
+- **Metric floats (Decision 39)**: relative error `<= 1e-6`, provided trade direction, constituents, share rounding, cash attribution and gate verdicts are unchanged.
+- **Deterministic Numerical Arrays & Prefix Invariance (task-card contracts, stricter than Decision 39)**: Verified via `numpy.isclose(..., rtol=1e-9, atol=1e-12)`. Future data perturbation past a cutoff date (`cut = 2004-06-30`) must yield **`max_abs_diff <= 1e-12`** on all pre-cutoff NAVs to guarantee zero lookahead leakage.
 - **One-Pass Review Cap (`SESSION-RULES 3c`)**: Maximum **2 review rounds** for production signal code (`A-level`) and **1 review round** (`30 min` budget) for research conclusions (`B-level`). "Must-fix" items are strictly limited to defects that flip a live signal/amount or break execution, and each must include a runnable counterexample fixture.
 
 ---
@@ -35,6 +36,6 @@ All strategies are evaluated at the **account level, net of transaction costs (`
    Every formal test on the `2012–2026` holdout window increments the cumulative wear counter $N$. To correct for multiple-testing inflation across time, the required block-bootstrap win probability ($2,000$ resamples, $252$-day blocks) scales as:
    $$p_{\text{threshold}}(N) = 1 - \frac{0.30}{N}$$
    - At $N = 1$: $p \ge 0.70$
-   - At current vault state ($N = 5$): **$p \ge 0.94$**
-   - Candidates achieving $0.70 \le p < 0.94$ are classified as *"Preliminary Pass"* and must survive a **12-month forward shadow ledger** before adoption.
+   - At current vault state (6 formal tests run; next $N = 7$): **$p \ge 0.957$**
+   - Candidates achieving $0.70 \le p < 0.957$ are classified as *"Preliminary Pass"* and must survive a **12-month forward shadow ledger** before adoption.
 5. **Survivorship Haircut**: Risk-sleeve candidates must still pass after an explicit **`5.0%/year` (`0.95^(1/252)` daily)** survivorship penalty when tested on non-CRSP panels.
